@@ -1,0 +1,4 @@
+# Windows / OS junk - never anything we actually want committed
+Thumbs.db
+desktop.ini
+.DS_Store
