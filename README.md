@@ -54,8 +54,9 @@ unaffected.
   safe universal fix exists yet. If you hit a crash exporting a clip on a
   heavily-modded server, this is likely it; a future update may resolve it.
 - An experimental fix for the editor hanging on "Downloading assets" is
-  built but not confirmed reliable enough yet, so it isn't exposed in this
-  release's config.
+  now exposed in the config (`[Stuck Downloads]`), off by default. Less
+  battle-tested than the core crash fix above — only turn it on if you
+  actually hit that infinite hang.
 
 ## What might come in future updates
 
