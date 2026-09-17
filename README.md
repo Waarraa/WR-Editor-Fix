@@ -1,6 +1,6 @@
 # WR Editor Fix
 
-**Version: v0.1.0**
+**Version: v0.2.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
@@ -28,7 +28,7 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.1.0)
+## Features (v0.2.0)
 
 **Crash fix — on by default:**
 - Stops the Rockstar Editor crashing when switching, editing, or exporting
