@@ -4,6 +4,42 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.3.0 — duplicate-archetype crash fixed, smarter logs, cleaner config
+
+- **Fixed the `diet-queen-carbon` / `india-connecticut-arizona` crash**
+  (`GTA5_b3258.exe+4EA1E0` / `GTA5_b3095.exe+4E7BDC`). On servers with
+  many duplicate/conflicting map archetypes, the editor walks a lookup
+  table that was never filled in and crashed on the first read. The fix
+  hands that read a real, empty table instead and lets the walk finish.
+  Field-confirmed on a 60+-duplicate-archetype server where the clip had
+  crashed on every attempt. The affected props may look missing in the
+  editor preview only.
+- **Fixed a crash our own fix could cause**: after recovering a read from
+  an unloaded asset, the game occasionally divided by the value we'd just
+  zeroed (`STATUS_INTEGER_DIVIDE_BY_ZERO`). Now caught and treated as 0.
+- The loop breaker (which stops a genuinely stuck loop from eating all
+  memory) is now also rate-based across the whole game, so multi-site
+  loops get cut before they can corrupt the heap.
+- **New, experimental, off by default: `[Vehicle Meta] SkipBrokenVehicleMeta`.**
+  Some servers ship a vehicle with a broken `carvariations`/`handling`
+  file; the game fails to read it, then loops forever the moment a clip
+  using that car is added to a project ("can watch clips but not add them
+  to a project", ends in "Out of game memory"). This remembers any such
+  file the game reports as malformed and skips it from then on
+  (`WR_BrokenVehicleMeta.txt`). Learns on first failure - the very first
+  attempt on a fresh install can still crash once.
+- **Logs reorganised**: everything now lands in `WR Editor Fix\Logs\`
+  (that's the folder to send with a crash report). The old separate
+  `WR_CameraFeatures.log` is folded into the main log as `[Camera]` lines.
+  Developer diagnostics moved to an optional second config file that the
+  release doesn't ship - the user config is now half the length.
+- Crash-report log lines can now name the resource file being mounted when
+  the crash happens during a data-file load (`... (resources:/pack/file.meta)`).
+- Known issue still open: on very heavy servers, editing a clip and then
+  exporting in the same session can still crash on export
+  (`alabama-twenty-hawaii`); exporting an already-edited clip straight
+  after launching works. Actively being investigated.
+
 ## v0.2.0 — Stuck Downloads exposed
 
 - Exposed the experimental "Stuck Downloads" fix in the shipped config

@@ -1,6 +1,6 @@
 # WR Editor Fix
 
-**Version: v0.2.0**
+**Version: v0.3.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
@@ -28,7 +28,7 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.2.0)
+## Features (v0.3.0)
 
 **Crash fix — on by default:**
 - Stops the Rockstar Editor crashing when switching, editing, or exporting
@@ -37,6 +37,23 @@ unaffected.
   crash found so far.
 - Also catches the same crash pattern in FiveM's streaming/asset-unload
   code on heavy custom-asset servers, not just the editor itself.
+- **New in v0.3.0:** fixes the crash on servers with many duplicate or
+  conflicting map archetypes (`diet-queen-carbon` /
+  `india-connecticut-arizona`), where the editor walked a lookup table that
+  was never filled in. Field-confirmed on a server where the clip had
+  crashed on every single attempt.
+- **New in v0.3.0:** catches a divide-by-zero that the recovery itself
+  could trigger, and stops multi-site runaway loops before they corrupt
+  memory.
+
+**Experimental, off by default — `[Vehicle Meta] SkipBrokenVehicleMeta`:**
+- For servers that ship a vehicle with a broken `carvariations`/`handling`
+  file. Symptom: clips play fine but the moment one using that car is added
+  to a project the editor hangs and dies with "Out of game memory". Turn
+  this on and the plugin remembers any vehicle file the game itself reports
+  as malformed and skips it from then on (saved in `WR_BrokenVehicleMeta.txt`).
+  It learns on the first failure, so the very first attempt can still crash
+  once - relaunch and it's skipped.
 
 **Editor free camera — on by default, each independently toggleable:**
 - Remove the distance leash that pulls the free-cam back when it flies far
@@ -48,11 +65,14 @@ unaffected.
 
 ## Known issues / what's being worked on
 
-- **A specific crash tied to malformed custom vehicle data on some heavily
-  modded servers** is still being actively investigated. It doesn't happen
-  on every server — only ones with broken vehicle-variation files — and no
-  safe universal fix exists yet. If you hit a crash exporting a clip on a
-  heavily-modded server, this is likely it; a future update may resolve it.
+- **On very heavy servers, editing a clip and then exporting in the same
+  session can still crash on export** (`alabama-twenty-hawaii`,
+  `GTA5_b3258.exe+600FB30`). Leaving the edit screen makes the game reload
+  its replay content, and on some servers that reload trips over a freed
+  object. Workaround that works today: edit and save your project, relaunch
+  FiveM, open the already-edited clip and export it without editing again.
+  Actively being investigated - the cause is now understood, the safe fix
+  isn't finished.
 - An experimental fix for the editor hanging on "Downloading assets" is
   now exposed in the config (`[Stuck Downloads]`), off by default. Less
   battle-tested than the core crash fix above — only turn it on if you
@@ -67,8 +87,8 @@ No promises on timing — solo project, worked on as time allows:
 - Camera position/speed presets (bookmarks).
 - Auto-save while editing, so a crash never loses your work.
 
-Check back on this repo for updates — new versions will be numbered v0.2.0,
-v0.3.0, and so on as they ship. Full version history: `CHANGELOG.md`.
+Check back on this repo for updates — new versions will be numbered v0.4.0,
+v0.5.0, and so on as they ship. Full version history: `CHANGELOG.md`.
 
 ## Install
 
@@ -93,7 +113,9 @@ make sure the `WR Editor Fix` folder actually ends up next to the `.asi`.
 ## Configuration
 
 Open `WR Editor Fix\WR_Editor_Fix.ini` in a text editor. Every option has a
-comment explaining what it does. The `[Editor Camera]` section reloads live
+comment explaining what it does. (Developer/diagnostic settings are kept in a
+separate file that isn't part of the release — you don't need it.) The
+`[Editor Camera]` section reloads live
 while FiveM is running — edit, save, and it applies within a second, no
 relaunch needed. Everything else needs a relaunch to take effect.
 
@@ -121,9 +143,9 @@ I want to know — I'll try to build a fix for it. Please:
      window itself tells you where it saved it, and gives a copy-to-upload
      option).
    - A screenshot of the actual crash window/error message.
-   - **All** the log files from your `WR Editor Fix` folder (next to the
-     `.asi`, in your FiveM `plugins` folder) — `WR_Editor_Fix.log` and any
-     other `WR_*.log` files in there.
+   - **All** the log files from `WR Editor Fix\Logs\` (next to the `.asi`,
+     in your FiveM `plugins` folder) — `WR_Editor_Fix.log` and anything else
+     in that `Logs` folder.
 
 The more of that you send, the faster I can actually find and fix it —
 missing pieces (especially the logs) usually means I can't reproduce it.
