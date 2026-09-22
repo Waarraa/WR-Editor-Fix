@@ -16,6 +16,15 @@ crashes out there that haven't been found yet, or that have been found but
 don't have a safe fix yet (see "Known issues" below). Installing this
 should mean you crash a lot less, not that you'll never crash again.
 
+**Not every fix applies to every server.** Most of these crashes are caused
+by a specific server's custom assets — a duplicated map archetype, a
+malformed vehicle file, a broken clothing model. The fix for one server's
+crash often does nothing for another server's, because it's a different
+broken file on a different code path. That's why this gets built crash by
+crash, from real logs and dumps, rather than one blanket "fix everything"
+switch. If your server hasn't had its crash looked at yet, it may still
+crash exactly as before.
+
 If you hit a crash this doesn't catch, see **"Found a new crash?"** near the
 bottom — I do want to know about it and will try to fix it.
 
