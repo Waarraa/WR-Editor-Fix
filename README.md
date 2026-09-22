@@ -155,6 +155,10 @@ I want to know — I'll try to build a fix for it. Please:
    - **All** the log files from `WR Editor Fix\Logs\` (next to the `.asi`,
      in your FiveM `plugins` folder) — `WR_Editor_Fix.log` and anything else
      in that `Logs` folder.
+   - If a `WR Editor Fix\Dev Logs\` folder exists, send everything in it
+     too. Those files only appear when the plugin catches a specific crash
+     shape, and they're the most useful thing you can send — they're what
+     solved the duplicate-archetype crash.
 
 The more of that you send, the faster I can actually find and fix it —
 missing pieces (especially the logs) usually means I can't reproduce it.
