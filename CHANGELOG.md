@@ -4,6 +4,30 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.4.0 — Editor Theme: your own colours and font
+
+- **New, off by default: `[Editor Theme]`.** Recolour and re-font the
+  Rockstar Editor from the `.ini`, no files replaced, nothing streamed.
+- **Colours** (`EditorTheme = 1` plus `MenuText` / `MenuTextGreyed`, plain
+  `RRGGBB` hex): menu labels and values, the timeline playhead, greyed-out
+  rows, the timeline's played region and the second timecode. The editor
+  reads these from the game's own HUD colour table; the plugin changes those
+  entries only while the editor is open and restores the stock values the
+  moment you leave, so the rest of the game's UI is untouched. Hot-reloads.
+- **Font** (`EditorFont`): swap the editor's UI font for one of the game's
+  built-in fonts - `Font5` (handwriting), `Font2_cond` (condensed),
+  `RockstarTAG` (all caps, a few symbols missing), `gtaCash` (Pricedown).
+  Every font the game ships was tested in-game; `Taxi_font`,
+  `GTAVLeaderboard` and `FixedWidthNumbers` only contain symbols/digits and
+  are listed as unusable. Works without `EditorTheme` turned on. Needs a
+  relaunch. The editor's own main menu (project list) keeps the stock font
+  for now. Game build b3258 only - on other builds the plugin logs that the
+  font isn't supported and leaves it stock.
+- The crash handler no longer tries to "rescue" faults inside FiveM's own
+  startup stub pages at the very start of the game executable - those are
+  passed straight on to FiveM, as they should be.
+- No changes to the core crash fix or the camera features.
+
 ## v0.3.0 — duplicate-archetype crash fixed, smarter logs, cleaner config
 
 - **Fixed the `diet-queen-carbon` / `india-connecticut-arizona` crash**

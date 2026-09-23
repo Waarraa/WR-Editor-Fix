@@ -1,12 +1,13 @@
 # WR Editor Fix
 
-**Version: v0.3.0**
+**Version: v0.4.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
 A FiveM `.asi` plugin that fixes the Rockstar Editor crashing when a clip
 references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
-plus a few optional quality-of-life tweaks for the editor's free camera.
+plus a few optional quality-of-life tweaks for the editor's free camera -
+and, new in v0.4.0, your own colours and font for the editor's menus.
 
 ## ⚠️ Important — read before you install
 
@@ -37,7 +38,7 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.3.0)
+## Features (v0.4.0)
 
 **Crash fix — on by default:**
 - Stops the Rockstar Editor crashing when switching, editing, or exporting
@@ -46,12 +47,12 @@ unaffected.
   crash found so far.
 - Also catches the same crash pattern in FiveM's streaming/asset-unload
   code on heavy custom-asset servers, not just the editor itself.
-- **New in v0.3.0:** fixes the crash on servers with many duplicate or
+- Fixes the crash on servers with many duplicate or
   conflicting map archetypes (`diet-queen-carbon` /
   `india-connecticut-arizona`), where the editor walked a lookup table that
   was never filled in. Field-confirmed on a server where the clip had
   crashed on every single attempt.
-- **New in v0.3.0:** catches a divide-by-zero that the recovery itself
+- Catches a divide-by-zero that the recovery itself
   could trigger, and stops multi-site runaway loops before they corrupt
   memory.
 
@@ -72,6 +73,25 @@ unaffected.
 - Scale the free-cam's move speed (adjustable multiplier, updates live
   while flying — no relaunch needed).
 
+**New in v0.4.0 — Editor Theme, off by default — `[Editor Theme]`:**
+- **Colours:** `MenuText` recolours the menu labels, values and the
+  timeline playhead; `MenuTextGreyed` recolours greyed-out rows, the
+  timeline's played region and the second timecode. Plain `RRGGBB` hex
+  (`E01234` = WR red). Applied only while the editor is open and put back
+  the moment you leave it, so the rest of the game's UI is never changed.
+  Hot-reloads - edit, save, see it within a second.
+- **Font:** `EditorFont` swaps the editor's UI font for one of the game's
+  own built-in fonts:
+  - `Font5` - handwriting / script
+  - `Font2_cond` - condensed
+  - `RockstarTAG` - all caps (a few symbols like `%` `.` `:` are missing)
+  - `gtaCash` - Pricedown, the GTA logo font
+  - empty / `Font2` - stock
+
+  Needs a FiveM relaunch after changing it. The Rockstar Editor's own
+  main menu (the project list) keeps the stock font for now - everything
+  inside the editor gets the new one.
+
 ## Known issues / what's being worked on
 
 - **On very heavy servers, editing a clip and then exporting in the same
@@ -90,6 +110,8 @@ unaffected.
 ## What might come in future updates
 
 No promises on timing — solo project, worked on as time allows:
+- More of the editor themeable: the selected-row highlight, headers,
+  timeline strip colours, and the new font on the editor's main menu too.
 - A fix for the vehicle-data crash mentioned above, if a safe one is found.
 - Camera roll/tilt control unlock.
 - Export resolution/framerate unlock.
@@ -124,9 +146,10 @@ make sure the `WR Editor Fix` folder actually ends up next to the `.asi`.
 Open `WR Editor Fix\WR_Editor_Fix.ini` in a text editor. Every option has a
 comment explaining what it does. (Developer/diagnostic settings are kept in a
 separate file that isn't part of the release — you don't need it.) The
-`[Editor Camera]` section reloads live
+`[Editor Camera]` section and the `[Editor Theme]` colours reload live
 while FiveM is running — edit, save, and it applies within a second, no
-relaunch needed. Everything else needs a relaunch to take effect.
+relaunch needed. Everything else (including `EditorFont`) needs a relaunch
+to take effect.
 
 ## A heads-up about antivirus / Windows Defender
 
