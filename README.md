@@ -26,6 +26,15 @@ crash, from real logs and dumps, rather than one blanket "fix everything"
 switch. If your server hasn't had its crash looked at yet, it may still
 crash exactly as before.
 
+**Tested on game build b3258 only.** Everything in this plugin was built and
+tested on FiveM's game build **b3258** (Legacy). It is **not confirmed on any
+other build** (b3095, b2944, older builds, or GTA V Enhanced). Your game
+build is the number in the crash window, e.g. `GTA5_b3258.exe`, and it can
+change when you join a server that enforces a different build. On another
+build some fixes may not apply (the game's code sits at different places) and
+some features switch themselves off. If you're on a different build and hit
+a crash, still send it — see below.
+
 If you hit a crash this doesn't catch, see **"Found a new crash?"** near the
 bottom — I do want to know about it and will try to fix it.
 
@@ -94,6 +103,9 @@ unaffected.
 
 ## Known issues / what's being worked on
 
+- **Only tested on game build b3258.** Other builds (for example b3095) are
+  not confirmed. A crash already fixed on b3258 can still happen on another
+  build, because the fix has to be matched to each build's code separately.
 - **On very heavy servers, editing a clip and then exporting in the same
   session can still crash on export** (`alabama-twenty-hawaii`,
   `GTA5_b3258.exe+600FB30`). Leaving the edit screen makes the game reload
