@@ -4,6 +4,41 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.5.0 — Record GTA V cutscenes, free camera on blocked clips
+
+- **New, on in the shipped `.ini`: `[Recording] AllowCutsceneRecording`.**
+  The Rockstar Editor keeps recording while a real GTA V cutscene plays or
+  loads. Normally the game stops recording the moment you aren't in control
+  of your character, and the clip fails with "Clip must be at least longer
+  than 3 seconds". The plugin changes only that one decision, so scripts that
+  block recording on purpose still work. The cutscene's actors, camera and
+  audio all end up in the clip. Game build b3258 only.
+- **New, on in the shipped `.ini`: `[Editor Camera] FreeCameraOnBlockedClips`.**
+  Clips recorded during a cutscene ("You cannot edit camera properties as this
+  clip contains a blocked cutscene") and clips recorded in first person get
+  a free camera in the editor: the marker's Cameras menu unlocks and the
+  camera moves. Game build b3258 only.
+- **Fixed** a crash when loading another clip after the first one: one of the
+  plugin's own built-in guards was handed a broken pointer that looked
+  valid, and the crash happened inside the guard where the safety net didn't
+  look. It now returns "nothing" like the guard does for any bad pointer.
+- **Fewer crashes on clips with lots of players** (more than 32,
+  `cold-cardinal-mountain` and its b3095 versions): the editor no longer loops
+  forever over a player slot it never filled in. The editor itself is built
+  for 32 players, so very big clips can still crash later or show wrong faces.
+- When the game raises its own fatal error (`RAGE error: ERR_...`), FiveM now
+  reports it cleanly instead of the plugin turning it into a second crash.
+- The log says which game build you're on. Parts built for b3258 switch
+  themselves off on other builds.
+- The shipped `.ini` now turns the **Editor Theme on** (`MenuText = FF0000`,
+  `MenuTextGreyed = 8000FF`, `EditorFont = Font2_cond`). Set
+  `EditorTheme = 0` and `EditorFont =` (empty) for the stock look.
+- `[Stuck Downloads] SkipStuckDownloads` now ships **off**: it could release
+  slow but healthy downloads on heavy servers and end in a game error.
+  Turn it on only if you hit the endless "Downloading assets" hang.
+- Known limit: recording doesn't continue while a script camera flies over a
+  cutscene (a server's own cutscene camera tool).
+
 ## v0.4.0 — Editor Theme: your own colours and font
 
 - **New, off by default: `[Editor Theme]`.** Recolour and re-font the

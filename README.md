@@ -1,13 +1,14 @@
 # WR Editor Fix
 
-**Version: v0.4.0**
+**Version: v0.5.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
 A FiveM `.asi` plugin that fixes the Rockstar Editor crashing when a clip
 references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
-plus a few optional quality-of-life tweaks for the editor's free camera -
-and, new in v0.4.0, your own colours and font for the editor's menus.
+plus a few optional quality-of-life tweaks for the editor's free camera,
+your own colours and font for the editor's menus - and, new in v0.5.0,
+recording real GTA V cutscenes with a free camera on them in the editor.
 
 ## ⚠️ Important — read before you install
 
@@ -47,7 +48,7 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.4.0)
+## Features (v0.5.0)
 
 **Crash fix — on by default:**
 - Stops the Rockstar Editor crashing when switching, editing, or exporting
@@ -64,8 +65,21 @@ unaffected.
 - Catches a divide-by-zero that the recovery itself
   could trigger, and stops multi-site runaway loops before they corrupt
   memory.
+- **New in v0.5.0:** fixes a crash when loading another clip after the first
+  one, where one of the plugin's own built-in guards was handed a broken
+  pointer that looked valid.
+- **New in v0.5.0:** fewer crashes on clips with lots of players (more than
+  32): the editor no longer loops forever over a player slot it never filled
+  in (`cold-cardinal-mountain` and its b3095 versions). The editor itself is
+  built for 32 players, so very big clips can still crash later or show
+  wrong faces on the extra players.
+- **New in v0.5.0:** when the game raises its own fatal error
+  (`RAGE error: ERR_...`), FiveM now reports it cleanly instead of the plugin
+  turning it into a second, confusing crash.
+- **New in v0.5.0:** the log says which game build you're on, and parts
+  built for b3258 switch themselves off on other builds.
 
-**Experimental, off by default — `[Vehicle Meta] SkipBrokenVehicleMeta`:**
+**Experimental, on in the shipped `.ini` — `[Vehicle Meta] SkipBrokenVehicleMeta`:**
 - For servers that ship a vehicle with a broken `carvariations`/`handling`
   file. Symptom: clips play fine but the moment one using that car is added
   to a project the editor hangs and dies with "Out of game memory". Turn
@@ -82,7 +96,8 @@ unaffected.
 - Scale the free-cam's move speed (adjustable multiplier, updates live
   while flying — no relaunch needed).
 
-**New in v0.4.0 — Editor Theme, off by default — `[Editor Theme]`:**
+**Editor Theme, on in the shipped `.ini` (red menu text, purple greyed rows,
+condensed font) — `[Editor Theme]`:**
 - **Colours:** `MenuText` recolours the menu labels, values and the
   timeline playhead; `MenuTextGreyed` recolours greyed-out rows, the
   timeline's played region and the second timecode. Plain `RRGGBB` hex
@@ -100,6 +115,21 @@ unaffected.
   Needs a FiveM relaunch after changing it. The Rockstar Editor's own
   main menu (the project list) keeps the stock font for now - everything
   inside the editor gets the new one.
+
+**New in v0.5.0 — record GTA V cutscenes (game build b3258), on by default:**
+- **`[Recording] AllowCutsceneRecording`:** the Rockstar Editor keeps
+  recording while a real GTA V cutscene plays or loads (for example one a
+  server script starts). Normally the game stops the recording the moment you
+  aren't in control of your character, and the clip fails with "Clip must
+  be at least longer than 3 seconds". The cutscene's actors, camera and audio
+  all end up in the clip. Scripts that block recording on purpose still work.
+- **`[Editor Camera] FreeCameraOnBlockedClips`:** the editor normally locks the
+  camera on such clips ("You cannot edit camera properties as this clip
+  contains a blocked cutscene"), and on clips recorded in first person. This
+  unlocks the marker's Cameras menu and lets the free camera move on them.
+- Known limit: recording doesn't continue while a script camera flies over
+  the cutscene (a server's own cutscene camera tool).
+- On other game builds both switch themselves off, and the log says so.
 
 ## Known issues / what's being worked on
 
@@ -130,8 +160,8 @@ No promises on timing — solo project, worked on as time allows:
 - Camera position/speed presets (bookmarks).
 - Auto-save while editing, so a crash never loses your work.
 
-Check back on this repo for updates — new versions will be numbered v0.4.0,
-v0.5.0, and so on as they ship. Full version history: `CHANGELOG.md`.
+Check back on this repo for updates — new versions will be numbered v0.6.0,
+v0.7.0, and so on as they ship. Full version history: `CHANGELOG.md`.
 
 ## Install
 
@@ -141,8 +171,9 @@ v0.5.0, and so on as they ship. Full version history: `CHANGELOG.md`.
    `%LOCALAPPDATA%\FiveM\FiveM.app\plugins\`
 3. Relaunch FiveM.
 
-That's it — everything in the `.ini` is already on by default. Open
-`WR_Editor_Fix.ini` if you want to turn anything off or adjust it.
+That's it — the crash fix and the main features are already on in the
+shipped `.ini`. Open `WR_Editor_Fix.ini` if you want to turn anything on, off
+or adjust it.
 
 **Verifying your download:** the SHA256 checksum for `WR_Editor_Fix.asi` is
 in `WR_Editor_Fix.asi.sha256`. If you're ever unsure a copy is genuine
@@ -160,8 +191,9 @@ comment explaining what it does. (Developer/diagnostic settings are kept in a
 separate file that isn't part of the release — you don't need it.) The
 `[Editor Camera]` section and the `[Editor Theme]` colours reload live
 while FiveM is running — edit, save, and it applies within a second, no
-relaunch needed. Everything else (including `EditorFont`) needs a relaunch
-to take effect.
+relaunch needed. Everything else (including `EditorFont`,
+`FreeCameraOnBlockedClips` and `[Recording]`) needs a relaunch to take
+effect.
 
 ## A heads-up about antivirus / Windows Defender
 
