@@ -1,14 +1,17 @@
 # WR Editor Fix
 
-**Version: v0.5.0**
+**Version: v0.6.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
+
+![The WR loading screen shown while the Rockstar Editor opens](media/loadscreen.gif)
 
 A FiveM `.asi` plugin that fixes the Rockstar Editor crashing when a clip
 references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
 plus a few optional quality-of-life tweaks for the editor's free camera,
-your own colours and font for the editor's menus - and, new in v0.5.0,
-recording real GTA V cutscenes with a free camera on them in the editor.
+your own colours and font for the editor's menus, recording real GTA V
+cutscenes - and, new in v0.6.0, WR loading screens for the editor and a fix
+for the "ERR_STR_INFO" game errors on heavy servers.
 
 ## ⚠️ Important — read before you install
 
@@ -27,14 +30,43 @@ crash, from real logs and dumps, rather than one blanket "fix everything"
 switch. If your server hasn't had its crash looked at yet, it may still
 crash exactly as before.
 
-**Tested on game build b3258 only.** Everything in this plugin was built and
-tested on FiveM's game build **b3258** (Legacy). It is **not confirmed on any
-other build** (b3095, b2944, older builds, or GTA V Enhanced). Your game
-build is the number in the crash window, e.g. `GTA5_b3258.exe`, and it can
-change when you join a server that enforces a different build. On another
-build some fixes may not apply (the game's code sits at different places) and
-some features switch themselves off. If you're on a different build and hit
-a crash, still send it — see below.
+**Tested on game build b3258.** Everything in this plugin was built and
+tested on FiveM's game build **b3258** (Legacy). The plugin knows and loads on every
+game build FiveM supports (table below) and the log names yours, but only b3258 is
+tested. On the others, **you are the tester**: it may work, some fixes may
+not apply (the game's code sits at different places), and parts built for
+b3258 switch themselves off. If you're on another build, your logs and crash
+dumps are what gets it working there — see **"Found a new crash?"** below.
+
+Your game build is the number in the crash window (`GTA5_b3258.exe`) or the
+`Game build:` line near the top of `WR_Editor_Fix.log`.
+
+| Build | GTA V update | Status |
+|---|---|---|
+| b1604 | Arena War | community testing |
+| b2060 | Los Santos Summer Special | community testing |
+| b2189 | Cayo Perico Heist | community testing |
+| b2372 | Los Santos Tuners | community testing |
+| b2545 | The Contract | community testing |
+| b2612 | The Contract (mpg9ec) | community testing |
+| b2699 | The Criminal Enterprises | community testing |
+| b2802 | Los Santos Drug Wars | community testing |
+| b2944 | San Andreas Mercenaries | community testing |
+| b3095 | The Chop Shop | partly checked (one editor session) |
+| **b3258** | **Bottom Dollar Bounties** | **tested** |
+| b3323 | title update after Bottom Dollar Bounties | community testing |
+| b3407 | Agents of Sabotage | community testing |
+| b3570 | Money Fronts | community testing |
+| b3751 | A Safehouse in the Hills | community testing |
+| b3788 | 2026 patch 1 | community testing |
+| b3889 | The Kortz Center Heist | community testing |
+
+Good to know: on servers running current FiveM, a build **lower** than b3258
+(for example `sv_enforceGameBuild 3095`) still runs the **b3258 game exe**
+with that build's content, so everything here applies as on b3258. Only
+servers on old FiveM versions put you on the real older exe. Builds
+**higher** than b3258 always run their own exe. GTA V Enhanced is not
+supported.
 
 If you hit a crash this doesn't catch, see **"Found a new crash?"** near the
 bottom — I do want to know about it and will try to fix it.
@@ -48,9 +80,16 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.5.0)
+## Features (v0.6.0)
 
 **Crash fix — on by default:**
+- **New in v0.6.0:** fixes the `RAGE error: ERR_STR_INFO_2` and
+  `ERR_STR_INFO_3` game errors (`[Crash Fix] GrowStreamingList`, game build
+  b3258). The game keeps a fixed list of 32768 streaming entries. On heavy
+  servers the world alone uses about 28000 of them, so a teleport, a cutscene
+  loading or an editor export fills the rest and the game stops. When the
+  list runs full, the plugin adds more room to it instead. Works in game and
+  in the editor.
 - Stops the Rockstar Editor crashing when switching, editing, or exporting
   clips that reference a custom asset (vehicle, MLO, prop, ytyp) which got
   unloaded. This is the core fix and covers every known variant of this
@@ -65,19 +104,19 @@ unaffected.
 - Catches a divide-by-zero that the recovery itself
   could trigger, and stops multi-site runaway loops before they corrupt
   memory.
-- **New in v0.5.0:** fixes a crash when loading another clip after the first
-  one, where one of the plugin's own built-in guards was handed a broken
+- Fixes a crash when loading another clip after the first one, where one of the plugin's own built-in guards was handed a broken
   pointer that looked valid.
-- **New in v0.5.0:** fewer crashes on clips with lots of players (more than
-  32): the editor no longer loops forever over a player slot it never filled
+- Fewer crashes on clips with lots of players (more than 32): the editor no longer loops forever over a player slot it never filled
   in (`cold-cardinal-mountain` and its b3095 versions). The editor itself is
   built for 32 players, so very big clips can still crash later or show
   wrong faces on the extra players.
-- **New in v0.5.0:** when the game raises its own fatal error
+- When the game raises its own fatal error
   (`RAGE error: ERR_...`), FiveM now reports it cleanly instead of the plugin
   turning it into a second, confusing crash.
-- **New in v0.5.0:** the log says which game build you're on, and parts
-  built for b3258 switch themselves off on other builds.
+- The log says which game build you're on, and parts built for b3258
+  switch themselves off on other builds. **New in v0.6.0:** the plugin loads
+  on every game build FiveM supports (it used to refuse to load on some), and
+  the log names the GTA V update and how far that build is tested.
 
 **Experimental, on in the shipped `.ini` — `[Vehicle Meta] SkipBrokenVehicleMeta`:**
 - For servers that ship a vehicle with a broken `carvariations`/`handling`
@@ -116,7 +155,7 @@ condensed font) — `[Editor Theme]`:**
   main menu (the project list) keeps the stock font for now - everything
   inside the editor gets the new one.
 
-**New in v0.5.0 — record GTA V cutscenes (game build b3258), on by default:**
+**Record GTA V cutscenes (game build b3258), on by default:**
 - **`[Recording] AllowCutsceneRecording`:** the Rockstar Editor keeps
   recording while a real GTA V cutscene plays or loads (for example one a
   server script starts). Normally the game stops the recording the moment you
@@ -131,11 +170,39 @@ condensed font) — `[Editor Theme]`:**
   the cutscene (a server's own cutscene camera tool).
 - On other game builds both switch themselves off, and the log says so.
 
+**New in v0.6.0 — WR loading screens, on in the shipped `.ini` —
+`[Editor Loading Screen]`:**
+- **Editor launch screen (`LaunchScreen`):** press "Rockstar Editor" + Yes in
+  FiveM's main menu and the WR screen shows at once, instead of FiveM's own
+  one. It shows live load progress, a "Running now" list of what's on in
+  your `.ini`, and the update log from GitHub - with an "Update available"
+  box when a newer version is out. It closes by itself when the editor is
+  ready; double-click it to close it early. It stays out of the way at the
+  main menu and when you join a server.
+- **Clip screen (`ClipScreen`):** a minimal WR screen while a clip loads
+  (Edit) or an export starts, instead of the stock "Preparing clip" screen.
+  It closes the moment the editor is ready.
+- `UpdateCheck = 0` stops the GitHub request (the built-in update log is
+  shown instead).
+- Both need the **Microsoft Edge WebView2 Runtime**: built into Windows 11, and
+  on Windows 10 it comes with Microsoft Edge. If it's missing, the log says so
+  and FiveM's own screens are used. Works best with the game in
+  "Windowed Borderless".
+- **Tested on Windows 11.** On Windows 10, or if anything looks wrong while the
+  editor opens (black / white / frozen screen, flickering, the game
+  minimising, a missing or double mouse cursor), set `LaunchScreen = 0` and
+  `ClipScreen = 0`. FiveM's own screens come back and nothing else changes.
+  Please send your logs on Discord so it can be fixed.
+
 ## Known issues / what's being worked on
 
-- **Only tested on game build b3258.** Other builds (for example b3095) are
-  not confirmed. A crash already fixed on b3258 can still happen on another
-  build, because the fix has to be matched to each build's code separately.
+- **The WR loading screens are only tested on Windows 11** (see above).
+  Pressing Export a second time in the same session can show the clip
+  screen a few seconds late.
+- **Only tested on game build b3258.** Every other build in the table above
+  is tested by the people who play on it. A crash already fixed on b3258 can
+  still happen on another build, because the fix has to be matched to each
+  build's code separately.
 - **On very heavy servers, editing a clip and then exporting in the same
   session can still crash on export** (`alabama-twenty-hawaii`,
   `GTA5_b3258.exe+600FB30`). Leaving the edit screen makes the game reload
@@ -160,8 +227,8 @@ No promises on timing — solo project, worked on as time allows:
 - Camera position/speed presets (bookmarks).
 - Auto-save while editing, so a crash never loses your work.
 
-Check back on this repo for updates — new versions will be numbered v0.6.0,
-v0.7.0, and so on as they ship. Full version history: `CHANGELOG.md`.
+Check back on this repo for updates — new versions will be numbered v0.7.0,
+v0.8.0, and so on as they ship. Full version history: `CHANGELOG.md`.
 
 ## Install
 
@@ -192,8 +259,8 @@ separate file that isn't part of the release — you don't need it.) The
 `[Editor Camera]` section and the `[Editor Theme]` colours reload live
 while FiveM is running — edit, save, and it applies within a second, no
 relaunch needed. Everything else (including `EditorFont`,
-`FreeCameraOnBlockedClips` and `[Recording]`) needs a relaunch to take
-effect.
+`FreeCameraOnBlockedClips`, `[Recording]`, `GrowStreamingList` and
+`[Editor Loading Screen]`) needs a relaunch to take effect.
 
 ## A heads-up about antivirus / Windows Defender
 

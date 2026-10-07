@@ -4,6 +4,34 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.6.0 — WR loading screens, ERR_STR_INFO fix, every game build
+
+- **New, on in the shipped `.ini`: WR loading screens (`[Editor Loading
+  Screen]`).** `LaunchScreen` shows the WR screen the moment you press
+  "Rockstar Editor" + Yes in FiveM's main menu: live load progress, a
+  "Running now" list of what's on in your `.ini`, and the GitHub update log
+  with an "Update available" box when a newer version is out. `ClipScreen`
+  shows a minimal WR screen while a clip loads or an export starts. Both close
+  by themselves when the editor is ready (double-click to close early) and stay
+  out of the way at the main menu and on server joins. Needs the Microsoft
+  Edge WebView2 Runtime (built into Windows 11, comes with Edge on Windows
+  10). Tested on Windows 11; `LaunchScreen = 0` / `ClipScreen = 0` bring back
+  FiveM's own screens. `UpdateCheck = 0` stops the GitHub request.
+- **New, on in the shipped `.ini`: fix for `RAGE error: ERR_STR_INFO_2` and
+  `ERR_STR_INFO_3` (`[Crash Fix] GrowStreamingList`).** The game keeps a fixed
+  list of 32768 streaming entries; on heavy servers the world alone uses
+  about 28000, so a teleport, a cutscene loading or an editor export fills
+  the rest and the game stops. When the list runs full, the plugin adds more
+  room instead. Works in game and in the editor. Game build b3258 only.
+- **The plugin now loads on every game build FiveM supports** (b1604 to
+  b3889). Before, FiveM refused to load it on b1604-b2612 and
+  b3751/b3788/b3889. Only b3258 is tested; on the other builds the players are
+  the testers, and parts built for b3258 still switch themselves off. The
+  log's `Game build:` line names the GTA V update and how far that build is
+  tested, and the README has the full table.
+- The `.asi` is bigger (~1 MB): the WebView2 loader and the two screens, with
+  their fonts and logo, are built in.
+
 ## v0.5.0 — Record GTA V cutscenes, free camera on blocked clips
 
 - **New, on in the shipped `.ini`: `[Recording] AllowCutsceneRecording`.**
