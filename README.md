@@ -1,17 +1,19 @@
 # WR Editor Fix
 
-**Version: v0.6.0**
+**Version: v0.6.1**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
-![The WR loading screen shown while the Rockstar Editor opens](media/loadscreen.gif)
+![The WR loading screen shown while the Rockstar Editor opens](.github/media/loadscreen.gif)
 
 A FiveM `.asi` plugin that fixes the Rockstar Editor crashing when a clip
 references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
 plus a few optional quality-of-life tweaks for the editor's free camera,
 your own colours and font for the editor's menus, recording real GTA V
-cutscenes - and, new in v0.6.0, WR loading screens for the editor and a fix
-for the "ERR_STR_INFO" game errors on heavy servers.
+cutscenes and WR loading screens for the editor. New in v0.6.1: fixes for
+clips with a player whose body never loaded, a fix for loading a second clip
+right after the first, and a list of broken server files you can send to
+your server owner.
 
 ## ⚠️ Important — read before you install
 
@@ -80,10 +82,27 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.6.0)
+## Features (v0.6.1)
 
 **Crash fix — on by default:**
-- **New in v0.6.0:** fixes the `RAGE error: ERR_STR_INFO_2` and
+- **New in v0.6.1:** fixes the crash when a clip dresses a ped
+  that was never loaded (`king-yankee-east` and the crashes that followed it:
+  `social-nuts-colorado`, `fifteen-princess-double`, `thirteen-johnny-low`,
+  `saturn-robert-lactose`). Seen with custom hands/body models on an RP
+  server: one ped's model never loaded, and the editor kept writing its
+  clothing, checking it and saving it into nothing. The plugin now skips that
+  ped's look and answers "nothing here" for it, so the clip loads, the free
+  camera works and saving (F5) works. That ped may look default in the
+  preview. Confirmed by the tester who reported it.
+- **New in v0.6.1:** with that same broken ped in a clip, moving the editor
+  camera near it could freeze the game ("FiveM has stopped responding"): the
+  game walked the ped's missing skeleton forever. The plugin now stops that
+  walk and skips the ped's bones. In rare cases the clip can still crash a
+  bit later on that ped; that last step is being tested.
+- **New in v0.6.1:** fixes the crash when you load a second clip right after
+  the first (`music-arkansas-vermont`): the editor looped over a table that
+  was already gone. The plugin now finishes that loop as "nothing found".
+- Fixes the `RAGE error: ERR_STR_INFO_2` and
   `ERR_STR_INFO_3` game errors (`[Crash Fix] GrowStreamingList`, game build
   b3258). The game keeps a fixed list of 32768 streaming entries. On heavy
   servers the world alone uses about 28000 of them, so a teleport, a cutscene
@@ -114,7 +133,7 @@ unaffected.
   (`RAGE error: ERR_...`), FiveM now reports it cleanly instead of the plugin
   turning it into a second, confusing crash.
 - The log says which game build you're on, and parts built for b3258
-  switch themselves off on other builds. **New in v0.6.0:** the plugin loads
+  switch themselves off on other builds. The plugin loads
   on every game build FiveM supports (it used to refuse to load on some), and
   the log names the GTA V update and how far that build is tested.
 
@@ -126,6 +145,13 @@ unaffected.
   as malformed and skips it from then on (saved in `WR_BrokenVehicleMeta.txt`).
   It learns on the first failure, so the very first attempt can still crash
   once - relaunch and it's skipped.
+
+**New in v0.6.1 — broken-asset report, on by default —
+`[Stuck Downloads] ReportStuckDownloads`:**
+- Lists server downloads that never finish in `WR_BrokenAssets.log` (resource
+  + file) - a plain list to send to your server owner. It only lists them,
+  nothing is skipped, so it's safe while you play. Set it to 0 to turn it
+  off. See "Broken files on the server" below for what to do with it.
 
 **Editor free camera — on by default, each independently toggleable:**
 - Remove the distance leash that pulls the free-cam back when it flies far
@@ -170,7 +196,7 @@ condensed font) — `[Editor Theme]`:**
   the cutscene (a server's own cutscene camera tool).
 - On other game builds both switch themselves off, and the log says so.
 
-**New in v0.6.0 — WR loading screens, on in the shipped `.ini` —
+**WR loading screens, on in the shipped `.ini` —
 `[Editor Loading Screen]`:**
 - **Editor launch screen (`LaunchScreen`):** press "Rockstar Editor" + Yes in
   FiveM's main menu and the WR screen shows at once, instead of FiveM's own
@@ -211,10 +237,20 @@ condensed font) — `[Editor Theme]`:**
   FiveM, open the already-edited clip and export it without editing again.
   Actively being investigated - the cause is now understood, the safe fix
   isn't finished.
+- **Opening a project and then exporting can crash on some clips** (the clip
+  loads twice: once for the project preview, once for the export, and the
+  second load can trip over a map object that's already gone; seen as
+  `butter-batman-nuts`, `yellow-november-arkansas`, and with several renders
+  in a row). Being worked on for v0.7.0. Until then: restart FiveM between
+  big renders.
 - An experimental fix for the editor hanging on "Downloading assets" is
-  now exposed in the config (`[Stuck Downloads]`), off by default. Less
+  in the config (`[Stuck Downloads] SkipStuckDownloads`), off by default. Less
   battle-tested than the core crash fix above — only turn it on if you
-  actually hit that infinite hang.
+  actually hit that infinite hang. **Only turn it on while you use the
+  Rockstar Editor, never while you play on a server:** in normal gameplay on
+  a heavy server it can release the game's own map models while they're
+  still loading, and the game might stop with `RAGE error: ERR_STR_MOD_INFO`.
+  Turn it on, fix the stuck clip, then set it back to 0.
 
 ## What might come in future updates
 
@@ -262,14 +298,33 @@ relaunch needed. Everything else (including `EditorFont`,
 `FreeCameraOnBlockedClips`, `[Recording]`, `GrowStreamingList` and
 `[Editor Loading Screen]`) needs a relaunch to take effect.
 
-## A heads-up about antivirus / Windows Defender
+## ⚠️ Windows Defender says "Trojan" / "malware"? (known issue, I'm working on it)
 
-This plugin works by reading and patching the game's own memory at runtime
-(the same category of technique every `.asi` crash-fix/mod uses). Some
-antivirus software flags this behavior heuristically even when nothing
-malicious is happening. If it gets quarantined or blocked, you may need to
-add an exclusion for it. Use your own judgement — only download this from
-the official release page.
+Some people get a Windows Defender popup saying `WR_Editor_Fix.asi` is a
+trojan or malware. **It's a false positive**, and I know about it.
+
+**Why it happens:** to stop the crashes, the plugin patches the game's own
+memory while it runs, catches the game's crashes and checks GitHub for
+updates. That's exactly how every `.asi` crash fix / mod works, but to an
+antivirus it can look like a cheat or an injector. The file is also new and
+not code-signed, so Windows has no "reputation" for it yet and its automatic
+cloud check guesses "trojan" (often a name ending in `!ml` = a
+machine-learning guess, not a real virus signature).
+
+**What I'm doing:** I'm working on it for the next updates - making the file
+look less suspicious to antivirus and reporting every release to Microsoft as
+a false positive so Defender stops flagging it.
+
+**What you can do right now:**
+- Only download WR Editor Fix from the official GitHub release page or my
+  Discord - never from anywhere else.
+- If Defender removed it: Windows Security → Virus & threat protection →
+  **Protection history** → open the entry → **Actions → Restore / Allow on
+  device**.
+- If FiveM says "Couldn't load WR_Editor_Fix.asi": right-click the `.asi` →
+  Properties → tick **Unblock** at the bottom → OK.
+- If you want to help: send me a screenshot of the Protection history
+  details (the threat name) on Discord, it helps me get it cleared faster.
 
 ## Found a new crash?
 
@@ -296,6 +351,24 @@ I want to know — I'll try to build a fix for it. Please:
 
 The more of that you send, the faster I can actually find and fix it —
 missing pieces (especially the logs) usually means I can't reproduce it.
+
+### Broken files on the server — I can't fix those
+
+WR Editor Fix stops the editor from crashing when a clip uses things that are
+no longer loaded. It **cannot repair files that are broken on the server
+itself**. If your logs show a broken server file, for example:
+
+- `WR_BrokenAssets.log` lists a resource + file (a download that never
+  finishes, like `tstudio_zmapdata / el_burro_heights.ymt`),
+- `WR_BrokenVehicleMeta.txt` lists a broken `vehicles.meta` /
+  `carvariations.meta`,
+- or a map / MLO / ytyp / ymap from a server resource that is broken,
+
+then that file has to be fixed by the **server owner / developer**, not by
+me. Please send them the log and the file name. I'm not able to fix broken
+server assets or server scripts through the `.asi`. If the editor still
+crashes after the server has fixed the file, send me the new logs and I'll
+look again.
 
 YouTube: https://www.youtube.com/@Warraa__
 

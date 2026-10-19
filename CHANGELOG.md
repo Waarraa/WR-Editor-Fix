@@ -4,6 +4,40 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.6.1 — Broken-ped crashes fixed, broken-asset report
+
+- **New, on by default: broken-asset report (`[Stuck Downloads]
+  ReportStuckDownloads = 1`).** Server downloads that never finish are listed
+  in `WR_BrokenAssets.log` (resource + file) - a plain list to send to your
+  server owner. It only lists them, nothing is skipped, so it's safe while you
+  play. `SkipStuckDownloads` (the actual skipper) stays off and editor-only.
+- **Fixed: freeze when moving the editor camera near a ped whose body never
+  loaded** ("FiveM has stopped responding"). The game walked that ped's
+  missing skeleton forever; the plugin now stops the walk and skips the ped's
+  bones. Seen in the tester's logs. In rare cases that clip can still crash a
+  bit later on the same ped - the last step is being tested.
+- **Fixed: crash loading a second clip right after the first**
+  (`music-arkansas-vermont`, b3407). The editor looped over a table that was
+  already gone and the safety net had to give up; the plugin now finishes
+  that loop as "nothing found". Matched by the game's code (b3258, b3095,
+  b3407).
+- **README:** new sections "Broken files on the server - I can't fix those"
+  (broken server assets / scripts are the server owner's job) and "Windows
+  Defender says Trojan / malware?" (known false positive, being worked on,
+  how to restore / allow / Unblock).
+- The `.asi` now carries Windows version info (Properties -> Details).
+- **Fixed: crash when a clip dresses a ped that was never loaded**
+  (`king-yankee-east`, then `social-nuts-colorado`, `fifteen-princess-double`,
+  `thirteen-johnny-low`, `saturn-robert-lactose` on the same clip). One ped
+  with a custom hands/body model never loaded; the editor still wrote its
+  clothing, asked about it thousands of times a second and saved it, all into
+  nothing. The plugin now skips that ped's look and answers "nothing here"
+  for it in each of those places. The clip loads, the free camera, editing
+  and F5 save all work. Matched by the game's code, not by address.
+  Confirmed by the tester (Reni).
+- Known issue: opening a project and then exporting can crash on some clips
+  (the clip loads twice). Being worked on for v0.7.0.
+
 ## v0.6.0 — WR loading screens, ERR_STR_INFO fix, every game build
 
 - **New, on in the shipped `.ini`: WR loading screens (`[Editor Loading
