@@ -1,6 +1,6 @@
 # WR Editor Fix
 
-**Version: v0.6.1**
+**Version: v0.6.2**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
@@ -10,10 +10,10 @@ A FiveM `.asi` plugin that fixes the Rockstar Editor crashing when a clip
 references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
 plus a few optional quality-of-life tweaks for the editor's free camera,
 your own colours and font for the editor's menus, recording real GTA V
-cutscenes and WR loading screens for the editor. New in v0.6.1: fixes for
-clips with a player whose body never loaded, a fix for loading a second clip
-right after the first, and a list of broken server files you can send to
-your server owner.
+cutscenes and WR loading screens for the editor, fixes for clips with a
+player whose body never loaded and a list of broken server files you can send
+to your server owner. New in v0.6.2: a hotfix for FiveM's October update -
+broken vehicle files are skipped again.
 
 ## ⚠️ Important — read before you install
 
@@ -82,10 +82,10 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.6.1)
+## Features (v0.6.2)
 
 **Crash fix — on by default:**
-- **New in v0.6.1:** fixes the crash when a clip dresses a ped
+- Fixes the crash when a clip dresses a ped
   that was never loaded (`king-yankee-east` and the crashes that followed it:
   `social-nuts-colorado`, `fifteen-princess-double`, `thirteen-johnny-low`,
   `saturn-robert-lactose`). Seen with custom hands/body models on an RP
@@ -94,12 +94,12 @@ unaffected.
   ped's look and answers "nothing here" for it, so the clip loads, the free
   camera works and saving (F5) works. That ped may look default in the
   preview. Confirmed by the tester who reported it.
-- **New in v0.6.1:** with that same broken ped in a clip, moving the editor
+- With that same broken ped in a clip, moving the editor
   camera near it could freeze the game ("FiveM has stopped responding"): the
   game walked the ped's missing skeleton forever. The plugin now stops that
   walk and skips the ped's bones. In rare cases the clip can still crash a
   bit later on that ped; that last step is being tested.
-- **New in v0.6.1:** fixes the crash when you load a second clip right after
+- Fixes the crash when you load a second clip right after
   the first (`music-arkansas-vermont`): the editor looped over a table that
   was already gone. The plugin now finishes that loop as "nothing found".
 - Fixes the `RAGE error: ERR_STR_INFO_2` and
@@ -145,8 +145,13 @@ unaffected.
   as malformed and skips it from then on (saved in `WR_BrokenVehicleMeta.txt`).
   It learns on the first failure, so the very first attempt can still crash
   once - relaunch and it's skipped.
+- **Fixed in v0.6.2:** FiveM's update of 19 October 2026 moved the spot this
+  feature hooks into, so in v0.6.1 it quietly switched itself off on the new
+  FiveM (the log said "Declining to install") and clips with a broken vehicle
+  file froze on "Preparing clip" again. The plugin now finds that spot by
+  itself on any FiveM version.
 
-**New in v0.6.1 — broken-asset report, on by default —
+**Broken-asset report, on by default —
 `[Stuck Downloads] ReportStuckDownloads`:**
 - Lists server downloads that never finish in `WR_BrokenAssets.log` (resource
   + file) - a plain list to send to your server owner. It only lists them,

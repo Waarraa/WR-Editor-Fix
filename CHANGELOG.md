@@ -4,6 +4,17 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.6.2 — Hotfix for the new FiveM update
+
+- **Fixed: `[Vehicle Meta] SkipBrokenVehicleMeta` switched itself off on the
+  new FiveM.** FiveM's update of 19 October 2026 moved the spot this feature
+  hooks into, so on v0.6.1 the log said "VarHook ... Declining to install" and
+  clips with a broken `vehicles.meta` / `carvariations.meta` froze on
+  "Preparing clip" ("FiveM has stopped responding") again. The plugin now
+  finds that spot by itself on any FiveM version. Confirmed by a tester on a
+  real server: the broken car files are skipped and the clip loads.
+- Nothing else changed since v0.6.1.
+
 ## v0.6.1 — Broken-ped crashes fixed, broken-asset report
 
 - **New, on by default: broken-asset report (`[Stuck Downloads]
