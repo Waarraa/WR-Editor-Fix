@@ -4,6 +4,48 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.7.0 — NVE support + NVE ReShade .addon fix, other fixes
+
+- **Fixed: "FiveM has stopped responding" when an EVE export starts with NVE
+  (NaturalVision Evolved).** When an export starts, the video encoder sets up
+  and cleans up a temporary graphics device. With NVE.asi loaded, NVE and
+  ReShade then waited on each other forever. New
+  `[Crash Fix] NveExportFreezeFix` (on by default, only active while NVE.asi
+  is loaded) makes that setup and cleanup happen in the same order ReShade
+  uses. NVE itself isn't changed.
+- **Fixed: NVE's ReShade .addon file crashed the game a few seconds after
+  launch with EVE** (`ReshadeEffectShaderToggler.addon64`,
+  `d3d11.dll+5BFEC`). EVE creates a throw-away swap chain to find ReShade's
+  Present. ReShade built and dropped a whole second effects runtime for it,
+  and the .addon freed textures the game's own runtime still used. New
+  `[Crash Fix] EveSwapChainFix` (on by default, only active with EVE +
+  ReShade): EVE's request gets the game's own swap chain instead, so EVE hooks
+  the same Present as before (your ReShade / NVE look is still in the export)
+  and the second runtime is never built. EVE, ReShade, NVE and the .addon
+  aren't changed.
+- **New: WR Editor Fix shows up in ReShade's Add-ons section** (Home key ->
+  Add-ons) whenever EVE and ReShade are loaded. That's how it knows the
+  game's swap chain for the fix above - leave it ticked there.
+- **Fixed: crash after an export or when leaving the export screen**
+  (`GTA5_b3258.exe+373EA6`, `+3E541F`, `+12E4D71` / `floor-north-enemy`). A
+  replay object kept an entity that had already been removed from the world.
+  The plugin now keeps that entity out of the list and treats its leftover
+  data as empty.
+- **Fixed: crash when an export loads a clip with an item that has no name**
+  (`arizona-beryllium-river`, `GTA5_b3258.exe+184C8B7`). New `[Crash Fix]
+  EmptyNameLookupFix` (on by default, game build b3258): only that one lookup
+  is allowed to carry on as "no match" - anything else still stops exactly
+  as before.
+- **Fixed: the safety net could stop a working export**
+  (`berlin-golf-wyoming`, `+F51C16`). It counted recoveries until a pause
+  instead of per second, so a steady trickle (a vehicle whose model data the
+  export's reload had freed) tripped it after about 40 seconds. It now
+  measures a real rate.
+- Tested with full NVE (incl. its ReShade .addon) + EVE + Voukoder on
+  a server: several sessions of 4 exports in a row with no crash or freeze.
+- Still known: opening a project and then exporting can crash on some clips
+  (the clip loads twice) - being worked on.
+
 ## v0.6.2 — Hotfix for the new FiveM update
 
 - **Fixed: `[Vehicle Meta] SkipBrokenVehicleMeta` switched itself off on the

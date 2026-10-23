@@ -1,6 +1,6 @@
 # WR Editor Fix
 
-**Version: v0.6.2**
+**Version: v0.7.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
@@ -12,8 +12,10 @@ plus a few optional quality-of-life tweaks for the editor's free camera,
 your own colours and font for the editor's menus, recording real GTA V
 cutscenes and WR loading screens for the editor, fixes for clips with a
 player whose body never loaded and a list of broken server files you can send
-to your server owner. New in v0.6.2: a hotfix for FiveM's October update -
-broken vehicle files are skipped again.
+to your server owner. New in v0.7.0: NVE support - works with NVE
+(NaturalVision Evolved) + EVE (ExtendedVideoExport), NVE's ReShade .addon no
+longer crashes the game, WR Editor Fix shows in ReShade's Add-ons section, and
+fewer crashes after and during exports.
 
 ## ⚠️ Important — read before you install
 
@@ -82,9 +84,19 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.6.2)
+## Features (v0.7.0)
 
 **Crash fix — on by default:**
+- **New in v0.7.0:** fixes the crash after an export or when leaving the
+  export screen (`+373EA6`, `+3E541F`, `+12E4D71` / `floor-north-enemy`): a
+  replay object kept an entity that had already been removed from the world.
+  The plugin keeps that entity out and treats its leftover data as empty.
+- **New in v0.7.0:** fixes the crash when an export loads a clip with an item
+  that has no name (`arizona-beryllium-river`, `[Crash Fix]
+  EmptyNameLookupFix`, game build b3258).
+- **New in v0.7.0:** the safety net no longer stops a working export
+  (`berlin-golf-wyoming`): it now measures recoveries per second instead of
+  counting until a pause.
 - Fixes the crash when a clip dresses a ped
   that was never loaded (`king-yankee-east` and the crashes that followed it:
   `social-nuts-colorado`, `fifteen-princess-double`, `thirteen-johnny-low`,
@@ -145,11 +157,26 @@ unaffected.
   as malformed and skips it from then on (saved in `WR_BrokenVehicleMeta.txt`).
   It learns on the first failure, so the very first attempt can still crash
   once - relaunch and it's skipped.
-- **Fixed in v0.6.2:** FiveM's update of 19 October 2026 moved the spot this
-  feature hooks into, so in v0.6.1 it quietly switched itself off on the new
-  FiveM (the log said "Declining to install") and clips with a broken vehicle
-  file froze on "Preparing clip" again. The plugin now finds that spot by
-  itself on any FiveM version.
+- It finds the spot it hooks into by itself, so FiveM updates don't switch
+  it off.
+
+**NVE (NaturalVision Evolved) + EVE (ExtendedVideoExport), on by default —
+`[Crash Fix] NveExportFreezeFix` and `EveSwapChainFix`:**
+- **New in v0.7.0:** no more "FiveM has stopped responding" when an EVE
+  export starts with NVE. The export's video encoder, NVE and ReShade waited
+  on each other forever; the plugin makes them take turns in the same order
+  ReShade does. Only active while NVE.asi is loaded.
+- **New in v0.7.0:** NVE's ReShade .addon file
+  (`ReshadeEffectShaderToggler.addon64`) no longer crashes the game a few
+  seconds after launch with EVE (`d3d11.dll+5BFEC`). EVE's throw-away swap
+  chain made ReShade build and drop a second effects runtime, which broke the
+  .addon. EVE now gets the game's own swap chain, so your ReShade / NVE look
+  is still in the export. Only active with EVE + ReShade.
+- **New in v0.7.0: WR Editor Fix shows up in ReShade's Add-ons section** (Home
+  key -> Add-ons). That's how it finds the game's swap chain for the fix
+  above - leave it ticked.
+- NVE, EVE, ReShade and the .addon aren't changed. Tested with full NVE + EVE
+  + Voukoder on a server: several sessions of 4 exports in a row, no crash.
 
 **Broken-asset report, on by default —
 `[Stuck Downloads] ReportStuckDownloads`:**
@@ -246,7 +273,7 @@ condensed font) — `[Editor Theme]`:**
   loads twice: once for the project preview, once for the export, and the
   second load can trip over a map object that's already gone; seen as
   `butter-batman-nuts`, `yellow-november-arkansas`, and with several renders
-  in a row). Being worked on for v0.7.0. Until then: restart FiveM between
+  in a row). Being worked on. Until then: restart FiveM between
   big renders.
 - An experimental fix for the editor hanging on "Downloading assets" is
   in the config (`[Stuck Downloads] SkipStuckDownloads`), off by default. Less
@@ -268,8 +295,8 @@ No promises on timing — solo project, worked on as time allows:
 - Camera position/speed presets (bookmarks).
 - Auto-save while editing, so a crash never loses your work.
 
-Check back on this repo for updates — new versions will be numbered v0.7.0,
-v0.8.0, and so on as they ship. Full version history: `CHANGELOG.md`.
+Check back on this repo for updates — new versions will be numbered v0.8.0,
+v0.9.0, and so on as they ship. Full version history: `CHANGELOG.md`.
 
 ## Install
 
@@ -300,8 +327,9 @@ separate file that isn't part of the release — you don't need it.) The
 `[Editor Camera]` section and the `[Editor Theme]` colours reload live
 while FiveM is running — edit, save, and it applies within a second, no
 relaunch needed. Everything else (including `EditorFont`,
-`FreeCameraOnBlockedClips`, `[Recording]`, `GrowStreamingList` and
-`[Editor Loading Screen]`) needs a relaunch to take effect.
+`FreeCameraOnBlockedClips`, `[Recording]`, the `[Crash Fix]` switches such as
+`GrowStreamingList` and `EveSwapChainFix`, and `[Editor Loading Screen]`)
+needs a relaunch to take effect.
 
 ## ⚠️ Windows Defender says "Trojan" / "malware"? (known issue, I'm working on it)
 
