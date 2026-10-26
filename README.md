@@ -1,6 +1,6 @@
 # WR Editor Fix
 
-**Version: v0.7.0**
+**Version: v0.8.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
@@ -11,11 +11,12 @@ references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
 plus a few optional quality-of-life tweaks for the editor's free camera,
 your own colours and font for the editor's menus, recording real GTA V
 cutscenes and WR loading screens for the editor, fixes for clips with a
-player whose body never loaded and a list of broken server files you can send
-to your server owner. New in v0.7.0: NVE support - works with NVE
-(NaturalVision Evolved) + EVE (ExtendedVideoExport), NVE's ReShade .addon no
-longer crashes the game, WR Editor Fix shows in ReShade's Add-ons section, and
-fewer crashes after and during exports.
+player whose body never loaded, a list of broken server files you can send
+to your server owner, and NVE (NaturalVision Evolved) + EVE
+(ExtendedVideoExport) support. New in v0.8.0: change the time and weather of
+any clip right in the editor (kept in the export), no more freeze after every
+seek / cut / marker move, and an editor camera that really goes through
+anything.
 
 ## ⚠️ Important — read before you install
 
@@ -84,17 +85,17 @@ instead of closing. A prevented crash may make a custom prop look missing
 in the editor **preview only** — your recorded clips and exports are
 unaffected.
 
-## Features (v0.7.0)
+## Features (v0.8.0)
 
 **Crash fix — on by default:**
-- **New in v0.7.0:** fixes the crash after an export or when leaving the
+- Fixes the crash after an export or when leaving the
   export screen (`+373EA6`, `+3E541F`, `+12E4D71` / `floor-north-enemy`): a
   replay object kept an entity that had already been removed from the world.
   The plugin keeps that entity out and treats its leftover data as empty.
-- **New in v0.7.0:** fixes the crash when an export loads a clip with an item
+- Fixes the crash when an export loads a clip with an item
   that has no name (`arizona-beryllium-river`, `[Crash Fix]
   EmptyNameLookupFix`, game build b3258).
-- **New in v0.7.0:** the safety net no longer stops a working export
+- The safety net no longer stops a working export
   (`berlin-golf-wyoming`): it now measures recoveries per second instead of
   counting until a pause.
 - Fixes the crash when a clip dresses a ped
@@ -114,6 +115,11 @@ unaffected.
 - Fixes the crash when you load a second clip right after
   the first (`music-arkansas-vermont`): the editor looped over a table that
   was already gone. The plugin now finishes that loop as "nothing found".
+- **New in v0.8.0:** fixes `RAGE error: ERR_GEN_MAP` when an export starts
+  on a heavy server (`[Crash Fix] GrowStreamingList`, game build b3258): the
+  game's list of things waiting to load ran full during the export's reload,
+  and the plugin now adds room to it too. Built from a real crash; it hasn't
+  come back since, but it hasn't been forced to happen again either.
 - Fixes the `RAGE error: ERR_STR_INFO_2` and
   `ERR_STR_INFO_3` game errors (`[Crash Fix] GrowStreamingList`, game build
   b3258). The game keeps a fixed list of 32768 streaming entries. On heavy
@@ -162,17 +168,17 @@ unaffected.
 
 **NVE (NaturalVision Evolved) + EVE (ExtendedVideoExport), on by default —
 `[Crash Fix] NveExportFreezeFix` and `EveSwapChainFix`:**
-- **New in v0.7.0:** no more "FiveM has stopped responding" when an EVE
+- No more "FiveM has stopped responding" when an EVE
   export starts with NVE. The export's video encoder, NVE and ReShade waited
   on each other forever; the plugin makes them take turns in the same order
   ReShade does. Only active while NVE.asi is loaded.
-- **New in v0.7.0:** NVE's ReShade .addon file
+- NVE's ReShade .addon file
   (`ReshadeEffectShaderToggler.addon64`) no longer crashes the game a few
   seconds after launch with EVE (`d3d11.dll+5BFEC`). EVE's throw-away swap
   chain made ReShade build and drop a second effects runtime, which broke the
   .addon. EVE now gets the game's own swap chain, so your ReShade / NVE look
   is still in the export. Only active with EVE + ReShade.
-- **New in v0.7.0: WR Editor Fix shows up in ReShade's Add-ons section** (Home
+- **WR Editor Fix shows up in ReShade's Add-ons section** (Home
   key -> Add-ons). That's how it finds the game's swap chain for the fix
   above - leave it ticked.
 - NVE, EVE, ReShade and the .addon aren't changed. Tested with full NVE + EVE
@@ -185,11 +191,40 @@ unaffected.
   nothing is skipped, so it's safe while you play. Set it to 0 to turn it
   off. See "Broken files on the server" below for what to do with it.
 
+**New in v0.8.0: time + weather in the editor, on by default —
+`[Editor Time Weather]` (game build b3258):**
+- Marker menu -> **WR Options** (Enter) -> Hour / Minute / Weather / Default.
+  Pick any minute of the day and any GTA weather (Extra Sunny, Clear, Clouds,
+  Smog, Foggy, Overcast, Rain, Thunder, Clearing, Neutral, Snow, Blizzard,
+  Light Snow, Xmas, Halloween). It changes live in the preview, the lighting
+  follows, and the export renders exactly what you see.
+- The rows show the clip's own recorded time and weather until you change
+  them. **Default** (Enter) puts everything back to what was recorded.
+- Your pick stays for every clip until you press Default or restart FiveM -
+  it isn't saved with the project yet. Nothing is written into your clips.
+- `TimeWeatherOverride` / `Time` / `Weather` in the `.ini` set it without the
+  menu (live, applies within a second of saving). `MenuRows = 0` hides the
+  menu row.
+
+**New in v0.8.0: no seek freeze, on by default — `[Editor Playback]
+NoSeekStall` (game build b3258):**
+- After every seek, cut or marker move the editor waited until the whole game
+  had finished streaming. On a busy server that never happens, so it froze
+  for about 7 seconds every time. Now it waits at most `NoSeekStallWaitMs`
+  (default 100 ms) and plays on; anything still loading pops in a moment
+  later.
+- Exports keep the full wait, so the rendered video is fully loaded.
+- Too much popping in? Raise `NoSeekStallWaitMs` (6600 = the stock wait) or
+  set `NoSeekStall = 0`.
+
 **Editor free camera — on by default, each independently toggleable:**
 - Remove the distance leash that pulls the free-cam back when it flies far
   from the subject (custom max distance).
 - Uncap the zoom/FOV range past the stock ~10-100° (up to 1-130°).
-- Disable free-cam collision with world geometry.
+- Disable camera collision. **New in v0.8.0:** it now really goes through
+  anything - walls and the map, the car or ped it's attached to or looking
+  at, and objects between two markers (no more "Unable to apply camera blend
+  due to object collision" jump).
 - Scale the free-cam's move speed (adjustable multiplier, updates live
   while flying — no relaunch needed).
 
@@ -278,11 +313,45 @@ condensed font) — `[Editor Theme]`:**
 - An experimental fix for the editor hanging on "Downloading assets" is
   in the config (`[Stuck Downloads] SkipStuckDownloads`), off by default. Less
   battle-tested than the core crash fix above — only turn it on if you
-  actually hit that infinite hang. **Only turn it on while you use the
-  Rockstar Editor, never while you play on a server:** in normal gameplay on
-  a heavy server it can release the game's own map models while they're
-  still loading, and the game might stop with `RAGE error: ERR_STR_MOD_INFO`.
-  Turn it on, fix the stuck clip, then set it back to 0.
+  actually hit that infinite hang. Since v0.8.0 it only acts inside the
+  Rockstar Editor; while you play on a server it only reports, so it can stay
+  on.
+- **No seek freeze is tested on one big server so far.** If the preview
+  pops in too much on yours, raise `NoSeekStallWaitMs` or set
+  `NoSeekStall = 0`, and tell me on Discord.
+
+## Rockstar Editor+ (RE+) — not supported, and it won't be
+
+WR Editor Fix will not support Rockstar Editor+ (RE+), not in this version
+and not later. I tested RE+ properly next to WR Editor Fix on game build
+b3258 and decided against it:
+
+- **Both plugins change the same editor camera code.** Two plugins fighting
+  over the same thing breaks easily, and every update on either side could
+  break the other again.
+- **Some RE+ features don't work on b3258** (camera collision, free camera on
+  first-person clips).
+- **It froze my game while editing.** RE+'s "no wait after seeking" makes the
+  game do blocking model loads much more often, and one stuck load froze
+  everything.
+- **RE+ on its own still crashed on export** on my server
+  (`ERR_STR_INFO_2`), a Rockstar Editor crash WR Editor Fix already catches.
+- **Its renderer was far too slow for my renders** (about 10% in 5 minutes),
+  so I stay with EVE for exporting.
+
+Instead, the editor features people use RE+ for are built into WR Editor Fix
+itself, from my own research and my own code: no freeze after seeking and
+time + weather that stays in the export (both new in v0.8.0), no camera
+collision, unlimited camera distance, uncapped zoom, free camera on blocked
+clips and free-cam speed. Smooth camera blending between markers and camera
+shake presets are being worked on next.
+
+**Using RE+ anyway?** It isn't supported together with WR Editor Fix. If RE+
+has its own camera distance, zoom or fast-precache options switched on, WR
+Editor Fix leaves those parts to RE+ (one line in the log says so) so the two
+don't fight over them. But if you crash or freeze, remove RE+ and test again
+before reporting. Nothing against RE+ or its developer - I just want one
+plugin that's built and tested for FiveM.
 
 ## What might come in future updates
 
@@ -294,9 +363,10 @@ No promises on timing — solo project, worked on as time allows:
 - Export resolution/framerate unlock.
 - Camera position/speed presets (bookmarks).
 - Auto-save while editing, so a crash never loses your work.
+- Save the time + weather pick per clip, with your project.
 
-Check back on this repo for updates — new versions will be numbered v0.8.0,
-v0.9.0, and so on as they ship. Full version history: `CHANGELOG.md`.
+Check back on this repo for updates — new versions will be numbered v0.9.0,
+v0.10.0, and so on as they ship. Full version history: `CHANGELOG.md`.
 
 ## Install
 
@@ -324,12 +394,13 @@ make sure the `WR Editor Fix` folder actually ends up next to the `.asi`.
 Open `WR Editor Fix\WR_Editor_Fix.ini` in a text editor. Every option has a
 comment explaining what it does. (Developer/diagnostic settings are kept in a
 separate file that isn't part of the release — you don't need it.) The
-`[Editor Camera]` section and the `[Editor Theme]` colours reload live
-while FiveM is running — edit, save, and it applies within a second, no
-relaunch needed. Everything else (including `EditorFont`,
-`FreeCameraOnBlockedClips`, `[Recording]`, the `[Crash Fix]` switches such as
-`GrowStreamingList` and `EveSwapChainFix`, and `[Editor Loading Screen]`)
-needs a relaunch to take effect.
+`[Editor Camera]` section, the `[Editor Theme]` colours and the
+`[Editor Time Weather]` time / weather keys reload live while FiveM is
+running — edit, save, and it applies within a second, no relaunch needed.
+Everything else (including `EditorFont`, `FreeCameraOnBlockedClips`,
+`[Recording]`, the `[Crash Fix]` switches such as `GrowStreamingList` and
+`EveSwapChainFix`, `[Editor Playback]`, `MenuRows` and
+`[Editor Loading Screen]`) needs a relaunch to take effect.
 
 ## ⚠️ Windows Defender says "Trojan" / "malware"? (known issue, I'm working on it)
 

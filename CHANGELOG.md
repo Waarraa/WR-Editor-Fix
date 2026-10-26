@@ -4,6 +4,47 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.8.0 — Time + weather in the editor, no seek freeze, other fixes
+
+- **New: change the time of day and the weather of any clip, right in the
+  editor.** Marker menu -> **WR Options** (Enter) -> Hour / Minute / Weather /
+  Default. Every GTA weather (Extra Sunny to Halloween, snow included) and any
+  minute of the day. It changes live in the preview, the lighting follows, and
+  the export renders exactly what you see. **Default** puts it back to the
+  time and weather the clip was recorded with. Your pick stays for every clip
+  until you press Default or restart FiveM (it isn't saved with the project
+  yet). Nothing is written into your clips. New `[Editor Time Weather]`
+  section, on by default. Game build b3258.
+- **New: no more freeze after every seek, cut or marker move.** The editor
+  waited until the whole game had finished streaming before it played on. On
+  a busy server that never happens, so it sat there for about 7 seconds every
+  time. New `[Editor Playback] NoSeekStall` (on by default) waits at most
+  `NoSeekStallWaitMs` (default 100 ms); anything still loading pops in a
+  moment later. Exports keep the full wait, so your video is fully loaded.
+  Game build b3258.
+- **Improved: `DisableCameraCollision` now really means no collision.** It
+  only switched off the free camera's world collision before. Three more
+  checks still pushed the camera: the shove off the car or ped it's attached
+  to or looking at (the "Unable to apply camera blend due to object
+  collision." message and its jump), world collision for an attached camera,
+  and the check that cut marker blends short. All of them follow the switch
+  now.
+- **Fixed: `RAGE error: ERR_GEN_MAP` when an export starts on a heavy
+  server.** The game's list of things waiting to load ran full during the
+  export's reload. `[Crash Fix] GrowStreamingList` now adds room to that list
+  too, the same way it does for ERR_STR_INFO_2 / _3. Built from a real crash;
+  it hasn't come back since, but it hasn't been forced to happen again either.
+- **Changed: `[Stuck Downloads] SkipStuckDownloads` only acts inside the
+  Rockstar Editor** (editing or exporting). While you play on a server it only
+  reports, so you no longer have to turn it off before you play. Still off by
+  default. New: when streaming hasn't moved for 20 seconds, the log names the
+  files that are still loading.
+- **Changed: Rockstar Editor+ (RE+).** If RE+ is installed with its own
+  camera distance, zoom or fast precache switched on, WR Editor Fix leaves
+  that part to RE+ (one line in the log says so), so the two don't fight over
+  it. RE+ itself is not supported and won't be (the README explains why):
+  WR Editor Fix does these jobs itself.
+
 ## v0.7.0 — NVE support + NVE ReShade .addon fix, other fixes
 
 - **Fixed: "FiveM has stopped responding" when an EVE export starts with NVE
