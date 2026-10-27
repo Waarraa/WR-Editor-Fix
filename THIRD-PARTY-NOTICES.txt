@@ -2,8 +2,9 @@ WR Editor Fix - Third-Party Notices
 ====================================
 
 This software statically links the following third-party libraries and
-embeds the following fonts (in its built-in loading screen pages). Their
-license texts are reproduced below as required.
+embeds the following fonts (in its built-in loading screen pages and editor
+menus). Their license texts are reproduced below as required; the editor
+fonts' own licence files are in the release's Fonts folder.
 
 ------------------------------------------------------------------------------
 MinHook - The Minimalistic API Hooking Library for x64/x86
@@ -167,4 +168,33 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+Editor fonts (embedded in the built-in editor menus, [Editor Look] Font)
+All free fonts from Google Fonts. Each font's full licence text is in the
+release's Fonts folder (file name in brackets).
+
+Chakra Petch - Copyright 2018 The Chakra Petch Project Authors
+  (https://github.com/m4rc1e/Chakra-Petch.git) - SIL OFL 1.1 [OFL.txt]
+Spicy Rice - Copyright (c) 2011 by Brian J. Bonislawsky DBA Astigmatic (AOETI)
+  - SIL OFL 1.1 [OFL_SpicyRice.txt]
+Bagel Fat One - Copyright 2022 The Bagel Fat Project Authors
+  (https://github.com/JAMO-TYPEFACE/BagelFat) - SIL OFL 1.1 [OFL_BagelFatOne.txt]
+Oswald - Copyright 2016 The Oswald Project Authors
+  (https://github.com/googlefonts/OswaldFont) - SIL OFL 1.1 [OFL_Oswald.txt]
+Carter One - Copyright (c) 2011, Vernon Adams - SIL OFL 1.1 [OFL_CarterOne.txt]
+Germania One - Copyright (c) 2011, John Vargas Beltran - SIL OFL 1.1
+  [OFL_GermaniaOne.txt]
+Kavoon - Copyright (c) 2011-2012, Sorkin Type Co, with Reserved Font Name
+  'Kavoon' - SIL OFL 1.1 [OFL_Kavoon.txt]
+Sriracha - Copyright (c) 2015, Cadson Demak, Copyright (c) 2014, Pablo
+  Impallari - SIL OFL 1.1 [OFL_Sriracha.txt]
+Ubuntu Mono - Copyright 2010-2011 Canonical Ltd. - Ubuntu Font Licence 1.0
+  [UFL_UbuntuMono.txt]
+Permanent Marker - Copyright 2010 Font Diner, Inc. - Apache License 2.0
+  [Apache_PermanentMarker.txt]
+
+The SIL Open Font License 1.1 text is reproduced above (Space Grotesk /
+JetBrains Mono).
 ------------------------------------------------------------------------------

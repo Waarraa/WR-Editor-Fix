@@ -4,6 +4,78 @@ All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
 issues still exist (see the README's "Known issues" section) — v1.0.0 is
 reserved for once everything currently known is actually fixed.
 
+## v0.9.0 — WR Automate + WR Garage, Neon editor, WR blend + shake
+
+- **New: WR Options, the editor's own WR page** (the last marker menu row):
+  time + weather, Camera Speed, Header Style / Motion, Font, Colors, WR Garage,
+  Director Mode, WR Automate and Clear Timeline. Game build b3258.
+- **New: WR Automate - the editor builds the camera edit for you.** WR Options
+  -> WR Automate: pick what to follow (the player's car or the player), the
+  length, how many markers, the style (Mixed / Orbit / Chase) and the shake,
+  then Automate. The timeline starts fresh, the clip is scouted, and it places
+  its own free-camera markers in a ring of cinematic shots around the car - WR
+  blend and a shake on every one, the car centred on screen the whole time.
+  Then it runs the clip again with the game's own camera collision test and
+  moves any camera that would touch or look through a car, ped, prop or wall.
+  Everything stays editable. New `[WR Automate]` section.
+- **New: WR Options -> Clear Timeline** (Enter twice): the clip back to a fresh
+  one - every marker gone, the default start and end markers, every setting
+  default. No undo.
+- **New: WR Garage - tune the car inside the editor.** Livery, Primary /
+  Secondary paint, Finish (Normal to Chrome), Neon, Xenon colour, Lights, Window
+  Tint, Plate Text (the game's own keyboard, up to 8 characters), Plate Style,
+  Body Parts (every part slot the car has, wheel type and rims), Randomise
+  Colors / All / Parts, Clean and Reset - live, on the car the recorded player
+  drives. **Per marker:** Cameras -> WR Marker Options -> Car Look gives a
+  marker its own car look: from that marker on, the car wears it until the next
+  one. Works in the export. Not saved with the project yet.
+- **New: WR blend.** Cameras -> Blend -> WR: the camera passes every marker
+  exactly on time with the speed flowing through them (position, rotation and
+  zoom) instead of the stock Smooth's spring that always lags behind. The
+  export matches the preview. Free-camera markers.
+- **New: WR shake.** Cameras -> Shake -> WR: Handheld, Walk, Run, Car,
+  Helicopter, Earthquake (each its own motion) and Custom, with Strength and
+  Speed. Fades into the next marker's shake, same in the export.
+- **New: WR blend + WR shake are saved with your project**
+  (`WR Editor Fix\Projects\<project name>.json`), and come back when the
+  project opens. Moving or deleting other clips doesn't move them.
+- **New: time + weather per marker.** Cameras -> WR Marker Options -> Time &
+  Weather: from that marker on, the clip plays with its own time and weather.
+  Cut switches at the marker, Smooth changes toward it (a time-lapse). Works in
+  the export. Not saved with the project.
+- **New, first version: Director Mode.** WR Options -> Director Mode -> START:
+  the clip plays and you fly the camera (controller, or mouse + keyboard), and
+  the take becomes markers - the fewest that still reproduce your move. Look
+  Assist keeps the car centred, Follow rides along with it, Record Speed lets
+  you fly in slow motion. No obstacle checks on a take yet.
+- **New: the editor's look - `[Editor Look]` replaces `[Editor Theme]`.**
+  `Theme = Neon` (on in the shipped `.ini`) gives the clip edit screen the WR
+  Neon Glass look: frosted glass menu, neon pill on the selected row, a glass
+  panel for the time and the playback buttons, a slim timeline with a glowing
+  playhead and diamond markers - drawn by the game itself. 10 built-in fonts
+  (Chakra Petch, Spicy Rice, Bagel Fat One, Oswald, Carter One, Ubuntu Mono,
+  Permanent Marker, Germania One, Kavoon, Sriracha) or the original one, every
+  editor colour from a palette (WR Options -> Colors), and header art at the top
+  of the menu (Stock, WR, Meme, Retro, Cinematic, animated or still). Font,
+  Colors, Header and Camera Speed change live in WR Options and are saved back
+  to the `.ini`. `EditorTheme`, `EditorFont` and the GTA font list are gone -
+  take the new `.ini`.
+- **New: WR Options -> Camera Speed** (x0.25 to x20), live, saved back to the
+  `.ini`.
+- **Fixed: WR Options missing from the first marker menu after a launch.**
+- **Fixed (guard): a crash while moving or editing a marker camera on some
+  clips with add-on cars** (a call to 0 at `+176B0BB`,
+  `ERR_MEM_EMBEDDEDALLOC_GUARD_1`): removed parts are cut from the car's parts
+  lists before the game touches them. It came back once more on the same clip,
+  so it's still being worked on.
+- **Changed: the loading screens' tips** point at the new features, and the launch screen's
+  "Running now" list shows them from your `.ini` (No seek freeze, WR Automate, Editor theme / header /
+  font).
+- **New: a `Guides` folder** - a step-by-step guide for every feature (WR Options, WR Automate, WR
+  Garage, Car Look, WR blend + shake, time + weather, Director Mode, the editor look, the free camera, the
+  loading screens, crash fixes and reports).
+- The `.asi` is about 7.8 MB now (the editor art and fonts are built in).
+
 ## v0.8.0 — Time + weather in the editor, no seek freeze, other fixes
 
 - **New: change the time of day and the weather of any clip, right in the
