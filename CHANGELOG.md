@@ -1,8 +1,85 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Changelog
 
-All notable changes to WR Editor Fix. Versions below v1.0.0 mean known
-issues still exist (see the README's "Known issues" section) — v1.0.0 is
-reserved for once everything currently known is actually fixed.
+All notable changes to WR Editor Fix. Known issues of the current version are
+always listed in the README's "Known issues" section.
+
+## v1.0.0 — WR Export, three game builds, Beat Sync
+
+The biggest update yet.
+
+- **New: WR Export - the editor's export, written by WR (on by default).** The
+  editor's Export button, frames and timing stay the game's own; WR writes the
+  video file:
+  - HEVC, H.264 or **AV1** on the graphics card's encoder (NVIDIA / AMD /
+    Intel - always the card the game runs on, even on a PC with CPU graphics
+    too), or H.264 on the CPU.
+  - **CQP 1-51 like OBS** (graphics card encoders) or a bitrate (Auto / any
+    Mbps).
+  - **Any size**: Screen, 720p, 1080p, 1440p, 4K - the stock 1920x1080 cap is
+    gone. **Any frame rate**: 24 / 25 / 30 / 50 / 60 / 120 / 23.976 / 29.97 /
+    59.94.
+  - **Real camera motion blur**: 4 - 64 game frames blended per video frame in
+    linear light, Blur Shutter (streak length, doesn't change the export time)
+    and Blur Shape (Soft / Even).
+  - **Your ReShade look in the video**, every blur sample included - only
+    ReShade with full add-on support is supported (reshade.me).
+  - **WR EXPORT rows in the editor's Export screen**: Preset, Save Preset,
+    Resolution, Codec, Encoder, Video Quality, Frame Rate, Motion Blur, Blur
+    Shutter, Blur Shape, ReShade, Sound - every change saved straight into the
+    new `WR_Export_Settings.ini`.
+  - **Presets** Fast / Medium / Slow / Super Slow, and your own: Save Preset
+    (or copy + rename a `.json` in `Export Presets`).
+  - Videos are `WR_` + the name you type at Export, in `Videos\WR Exports` or
+    your own folder, never overwritten. Sound off = no audio track.
+  - EVE installed with its enable_mod on = EVE exports instead. Pick one:
+    `[WR Export] Enabled = 0` for EVE / the stock export.
+- **New: three game builds.** Every WR tool - WR Options, WR Automate, WR
+  Garage, Car Look, WR blend + shake, time + weather, Director Mode, the editor
+  look, WR Export, No seek freeze, cutscene recording, free camera on blocked
+  clips - and the build-specific crash fixes now run on **b3258, b3095
+  (The Chop Shop) and b3407 (Agents of Sabotage)**.
+- **New: WR Automate Beat Sync.** Drop songs (mp3 / wav / m4a / flac / wma)
+  into `WR Editor Fix\Music\`, pick one in WR Automate -> Music, choose the
+  section and Cut every (beat / 2 beats / bar / 2 bars / 4 bars): the markers
+  land on the beat, the video is as long as the section, and the song plays
+  in the editor in sync. Every run writes an edit sheet (song, BPM, drop,
+  section, every marker's song time) to line the song up in your video editor.
+- **New: WR Automate rows.** Blend / Cut (WR Blend or Hard Cut, with Follow
+  Car / New Angle / Pan With Car), Distance (Mixed or 2 - 30 m), Height (Mixed,
+  Low, 1 - 20 m - drone shots), Checks (On / Ground only / Off) and Length =
+  Timeline (fills exactly your own start + end markers).
+- **New: WR Automate calm follow** - drifts and donuts get a camera that
+  follows the middle of the move instead of every spin.
+- **New: WR Options -> Timeline Size, 50 - 300 %** - the timeline's markers,
+  clip start / end, playhead and the bar's thickness, live and saved. The
+  Neon playhead lost its white line.
+- **New: saved with your project** - the WR Garage look, every marker's Car
+  Look and time + weather (WR Options and per marker) go into the same
+  project file as WR blend + shake, and the Garage look is on the car as soon
+  as the project opens.
+- **New: loading screen cards** - Game build (your build, its GTA V update,
+  editor tools on / off), Plugins (EVE / NVE / QuantV / ReShade supported,
+  other `.asi` not tested), a red Rockstar Editor+ warning and a blue INFO box
+  when EVE and WR Export are both on.
+- **Changed: WR Garage Clean stays clean** - no dirt, dents, scratches or wall
+  scrapes, through every change, marker look and the export (broken-off parts
+  go back on with the Clean press).
+- **Fixed:** a crash about a second after a clip loads (`yankee-alpha-may`) -
+  the game's clean-up walked a list that was never set up.
+- **Fixed:** a freeze while editing when a car part's list looped back on
+  itself.
+- **Fixed:** the WR Automate camera could pass through the followed car on a
+  drifting / circling car.
+- **Fixed:** the Beat Sync song didn't start right after WR Automate finished,
+  or after a cut's short stall.
+- **Known issue:** WR Export with motion blur makes the sound too long - the
+  blur presets have Sound off; add music in your video editor.
+- **Take the new `WR Editor Fix` folder:** new `[WR Export]` section,
+  `WR_Export_Settings.ini`, `Export Presets`, the `Music` folder for Beat Sync
+  songs, new `[WR Automate]` keys and `TimelineSize`.
+- The font licences are now all in `THIRD-PARTY-NOTICES.txt` - no separate
+  `Fonts` folder (the fonts themselves are built into the plugin, as before).
 
 ## v0.9.0 — WR Automate + WR Garage, Neon editor, WR blend + shake
 

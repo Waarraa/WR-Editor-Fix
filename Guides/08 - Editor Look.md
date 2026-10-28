@@ -1,15 +1,17 @@
-# Editor Look - theme, fonts, colours and header
+<!-- MADE BY WR | WARRAA_ -->
+# Editor Look - theme, fonts, colours, header and Timeline Size
 
 Make the Rockstar Editor yours: the WR Neon Glass theme, 10 built-in fonts,
-every colour from a palette, and header art at the top of the menu. It's the
+every colour from a palette, header art at the top of the menu, and the
+timeline at the size you like. It's the
 game itself drawing it (built into the plugin), not an overlay on top. Only
 while the editor is open - the rest of the game looks stock.
 
-**Game build:** b3258 only. **Ini:** `[Editor Look]`.
+**Game builds:** b3258, b3095 and b3407. **Ini:** `[Editor Look]`.
 
-> **Tested:** Both themes, fonts, colours and headers, live switching and saving to the ini - one PC, Windows 11.
+> **Tested:** Both themes, fonts, colours and headers, live switching and saving to the ini; Timeline Size 50 - 300 % on the Neon theme, on b3258, b3095 and b3407 - one PC, Windows 11.
 >
-> **Not tested yet:** Other screen resolutions / UI scales.
+> **Not tested yet:** Other screen resolutions / UI scales; Timeline Size on the Default theme.
 >
 > Everything that's supported / tested: `00 - Support and Testing.md`.
 
@@ -23,7 +25,7 @@ Theme = Neon      ; or Default
 - **Neon** (on in the shipped `.ini`) - WR Neon Glass on the clip edit screen:
   a frosted glass menu with a neon pill on the selected row, one glass panel
   for the time and the playback buttons, a slim timeline with a red played
-  line, a glowing playhead and diamond markers.
+  line, a glowing playhead orb and diamond markers.
 - **Default** - the stock Rockstar Editor.
 
 Only the clip edit screen (where you edit markers) changes; the other editor
@@ -49,8 +51,8 @@ WR Options -> **Font** (live), or `Font =` in the `.ini`:
 
 Every editor text uses it: menus, the help line, headings, project info and
 timeline clip names (not your own text clips or number fields). Works with
-both themes. The fonts are free Google Fonts - their licences are in the
-`Fonts` folder of the release.
+both themes. The fonts are free Google Fonts, built into the plugin - their
+licences are in `THIRD-PARTY-NOTICES.txt`.
 
 ## Colors
 
@@ -93,10 +95,25 @@ HeaderAnimated = 1     ; 1 = animated (Meme, Retro, Cinematic move), 0 = still
 
 The logo at the top of the editor menu. Stock = the original R* EDITOR.
 
+## Timeline Size
+
+WR Options -> **Timeline Size** (live), or in the `.ini`:
+
+```ini
+TimelineSize = 100    ; 50 - 300 (percent), 100 = the original size
+```
+
+How big the clip edit timeline is: the markers, the clip start / end, the
+playhead and how thick the bar is. Left / right steps 10 %. The icons grow
+around their point on the line, so they stay exactly on it, and the timeline
+keeps its width - every marker stays at its time. The Neon rail grows up to
+150 % (it stays inside the space the editor lays the timeline out in); on the
+Default theme only the icons grow, the stock bar stays as it is.
+
 ## What saves where
 
-Font, Colors, Header Style and Header Motion (and Camera Speed) changed in WR
-Options are saved back into their own `[Editor Look]` lines about a second
+Font, Colors, Header Style, Header Motion and Timeline Size (and Camera Speed)
+changed in WR Options are saved back into their own `[Editor Look]` lines about a second
 after your last change, so the next launch starts with them. `Theme` is only
 set in the `.ini`.
 
@@ -108,6 +125,6 @@ new `.ini`; your old menu colours go into `MenuText` / `MenuTextGreyed`.
 
 ## Limits
 
-- Game build b3258 only.
+- Game builds b3258, b3095 and b3407.
 - Neon changes the clip edit screen only; the project list and other editor
   screens stay stock.

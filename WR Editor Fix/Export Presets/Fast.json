@@ -1,0 +1,17 @@
+{
+  "_madeBy": "MADE BY WR | WARRAA_",
+  "name": "Fast",
+  "order": 1,
+  "description": "No motion blur - exports at normal speed. Sound on.",
+  "Resolution": "Screen",
+  "Codec": "HEVC",
+  "Encoder": "Auto",
+  "BitrateMbps": "Auto",
+  "CQP": "18",
+  "Fps": "Game",
+  "MotionBlurSamples": "0",
+  "MotionBlurStrength": "0.5",
+  "MotionBlurShape": "Soft",
+  "ReShade": "1",
+  "Sound": "1"
+}

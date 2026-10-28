@@ -1,3 +1,4 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Time and Weather - per clip and per marker
 
 Play any clip at another time of day and with another weather - for the whole
@@ -5,7 +6,7 @@ clip, or changing from one marker to the next (with a hard cut or a smooth
 time-lapse). The lighting follows, and the export renders exactly what you see.
 Nothing is written into your clips.
 
-**Game build:** b3258 only. **Ini:** `[Editor Time Weather]`.
+**Game builds:** b3258, b3095 and b3407. **Ini:** `[Editor Time Weather]`.
 
 > **Tested:** WR Options: 5 EVE exports with 5 different looks. Per marker: cut and smooth markers in preview + EVE export.
 >
@@ -71,5 +72,5 @@ These keys reload live - edit, save, and it applies within a second.
 
 ## Limits
 
-- Not saved with the project: time + weather stays until you restart FiveM.
-- Game build b3258 only.
+- Saved with your project (the WR Options pick and every marker's time + weather).
+- Game builds b3258, b3095 and b3407.

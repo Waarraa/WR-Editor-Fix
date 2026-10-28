@@ -1,3 +1,4 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Free Camera - no leash, no collision, any zoom, any speed
 
 The Rockstar Editor's free camera has limits: it gets pulled back when it
@@ -8,7 +9,7 @@ own switch. All of them are on in the shipped `.ini`.
 **Ini:** `[Editor Camera]` - this section **reloads live**: edit, save, and it
 applies within a second, no relaunch.
 
-> **Tested:** Every switch on b3258; No seek freeze on one big server (225+ seeks); cutscene recording + blocked clips.
+> **Tested:** Every switch on b3258 and b3095; No seek freeze on one big server (225+ seeks); cutscene recording + blocked clips.
 >
 > **Not tested yet:** No seek freeze on other servers; script cameras over a cutscene (known not to work).
 >
@@ -32,8 +33,8 @@ anything, and puts them back the moment you set it to 0.
 
 ## Blocked clips and cutscenes
 
-Two more switches (on in the shipped `.ini`, **need a relaunch**, game build
-b3258 only):
+Two more switches (on in the shipped `.ini`, **need a relaunch**, game builds
+b3258, b3095 and b3407):
 
 | Key | What it does |
 |---|---|
@@ -56,7 +57,7 @@ game has finished streaming - on a busy server about 7 seconds every time. With
 NoSeekStall it waits at most `NoSeekStallWaitMs` and plays on; anything still
 loading pops in a moment later. Exports always keep the full wait, so the video
 is fully loaded. Too much popping in? Raise the wait (6600 = stock) or set
-`NoSeekStall = 0`. Needs a relaunch. Game build b3258 only.
+`NoSeekStall = 0`. Needs a relaunch. Game builds b3258, b3095 and b3407.
 
 ## Rockstar Editor+ (RE+)
 

@@ -1,3 +1,4 @@
+<!-- MADE BY WR | WARRAA_ -->
 # WR Blend and WR Shake - camera paths and camera shake
 
 Two new choices in every marker's Cameras page: **WR blend** for a smooth
@@ -5,7 +6,7 @@ camera path that is exactly on time, and **WR shake** for real handheld,
 footstep, car and helicopter camera shake. Both look the same in the preview
 and in your export, and both are **saved with your project**.
 
-**Game build:** b3258 only. **Ini:** none - they're in the editor menu.
+**Game builds:** b3258, b3095 and b3407. **Ini:** none - they're in the editor menu.
 
 > **Tested:** WR blend in preview + EVE export; every WR shake style live; saving + reopening a project (12 marker settings back).
 >
@@ -97,4 +98,4 @@ you change it, and comes back when you open the project again.
 ## Limits
 
 - WR blend: free camera markers only (attached / look-at: stock Smooth).
-- Game build b3258 only.
+- Game builds b3258, b3095 and b3407.

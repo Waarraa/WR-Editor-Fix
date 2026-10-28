@@ -1,0 +1,17 @@
+{
+  "_madeBy": "MADE BY WR | WARRAA_",
+  "name": "Slow",
+  "order": 3,
+  "description": "16-sample motion blur, film shutter - about 16x the export time. Sound off.",
+  "Resolution": "Screen",
+  "Codec": "HEVC",
+  "Encoder": "Auto",
+  "BitrateMbps": "Auto",
+  "CQP": "15",
+  "Fps": "Game",
+  "MotionBlurSamples": "16",
+  "MotionBlurStrength": "0.5",
+  "MotionBlurShape": "Soft",
+  "ReShade": "1",
+  "Sound": "0"
+}

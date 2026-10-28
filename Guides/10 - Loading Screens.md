@@ -1,3 +1,4 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Loading Screens - the WR launch screen and clip screen
 
 Two WR screens replace FiveM's own while the Rockstar Editor opens and while
@@ -18,6 +19,11 @@ Press **Rockstar Editor** + **Yes** in FiveM's main menu and the WR screen
 shows at once. It has:
 
 - **The version** you're running.
+- **Game build** - the build your game runs (b3258, b3095 ...) with its GTA V
+  update, and whether the editor tools are on for it (b3258, b3095 and b3407:
+  on; every other build: crash fixes only).
+- **Plugins** - what else is in your `plugins` folder: EVE, NVE, QuantV and
+  ReShade show as Supported, any other `.asi` as Not tested (by its file name).
 - **Running now** - what's on in **your** `.ini`: the crash fix, No seek
   freeze, the free camera switches, the camera speed, WR Automate, and your
   editor theme, header and font.
@@ -28,6 +34,14 @@ shows at once. It has:
 
 Double-click it to close it early. It stays out of the way at the main menu
 and when you join a server.
+
+Two notices can show in the middle of it:
+
+- **Rockstar Editor+ (RE+) installed** - a red warning: RE+ is not supported
+  and never will be. If you crash, remove RE+ first before opening a ticket.
+- **EVE and WR Export both on** - a blue INFO box: pick ONE exporter, both at
+  the same time can crash. Want WR Export? Remove EVE. Want EVE? Set
+  `[WR Export] Enabled = 0`. (WR Export off + EVE = no box.)
 
 ## The clip screen
 

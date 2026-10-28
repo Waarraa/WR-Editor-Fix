@@ -1,3 +1,4 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Crash Fixes and Reports - what's fixed, and what to send
 
 WR Editor Fix started as one crash fix and still is one first. This guide
@@ -6,7 +7,7 @@ and exactly what to send when something still crashes.
 
 > **Tested:** Every fix is built from a real crash; most were confirmed on the reporter's own clip (the README says which ones weren't forced to happen again, like `ERR_GEN_MAP`). NVE + EVE: several sessions of 4 exports in a row.
 >
-> **Not tested yet:** Crashes nobody has reported yet; most game builds other than b3258.
+> **Not tested yet:** Crashes nobody has reported yet; game builds other than b3258, b3095 and b3407.
 >
 > Everything that's supported / tested: `00 - Support and Testing.md`.
 
@@ -21,8 +22,10 @@ exports are fine.
 On top of that it fixes many specific crashes found from real logs and dumps:
 exports on heavy servers (`ERR_STR_INFO_2` / `_3`, `ERR_GEN_MAP`), clips with a
 ped whose body never loaded, duplicate map archetypes, loading a second clip,
-clips with more than 32 players, items with no name, and the NVE + EVE export
-freeze and ReShade `.addon` crash. The README's Features list names each one.
+clips with more than 32 players, items with no name, the game's clean-up
+walking a list that was never set up (`yankee-alpha-may`), a freeze when a
+car part's list looped back on itself, and the NVE + EVE export freeze and
+ReShade `.addon` crash. The README's Features list names each one.
 
 **It does not remove 100% of editor crashes.** Most crashes come from one
 server's broken custom files, so a fix for one server's crash often does
@@ -86,10 +89,11 @@ mean the crash can't be reproduced.
 
 ## Game builds
 
-Everything is built and tested on game build **b3258**. The plugin loads on
-every game build FiveM supports and the log names yours, but on other builds
-some fixes may not apply and the b3258-only features switch themselves off.
-Your logs and dumps are what gets other builds working.
+Everything is built and tested on game builds **b3258, b3095 and b3407** -
+the build-specific crash fixes are matched to each of the three. The plugin
+loads on every game build FiveM supports and the log names yours, but on
+other builds some fixes may not apply and the editor tools switch
+themselves off. Your logs and dumps are what gets other builds working.
 
 ## Windows Defender says "Trojan"?
 

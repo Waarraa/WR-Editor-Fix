@@ -1,13 +1,14 @@
+<!-- MADE BY WR | WARRAA_ -->
 # WR Options - the editor's own WR page
 
 WR Options is where most of WR Editor Fix's editor tools live. It is a page
 inside the Rockstar Editor itself, drawn by the game like every other editor
 menu.
 
-**Game build:** b3258 only. **Ini:** `[Editor Time Weather] MenuRows = 1`
+**Game builds:** b3258, b3095 and b3407. **Ini:** `[Editor Time Weather] MenuRows = 1`
 (on by default; `0` removes every WR row from the editor menus).
 
-> **Tested:** Every row, live, and saving back to the ini - Windows 11, b3258.
+> **Tested:** Every row, live, and saving back to the ini - Windows 11, on b3258, b3095 and b3407.
 >
 > **Not tested yet:** Other game builds (the page switches itself off there).
 >
@@ -35,6 +36,7 @@ The help line under the menu explains the row you are on.
 | **Header Motion** | Animated or Still (Meme, Retro and Cinematic move). | Left / right |
 | **Font** | The font of every editor menu and text: Default (the original) or one of 10 built-in fonts. | Left / right |
 | **Colors** | Opens the WR Colors page - every colour of the editor's look. | Enter |
+| **Timeline Size** | How big the timeline is: markers, start / end, playhead and the bar's thickness, 50 - 300 % (100 % = the original size). See `08 - Editor Look.md`. | Left / right |
 | **WR Garage** | Opens WR Garage - tune the clip's car. See `03 - WR Garage.md`. | Enter |
 | **Director Mode** | Opens Director Mode - fly the camera live. See `07 - Director Mode.md`. | Enter |
 | **WR Automate** | Opens WR Automate - the editor builds the camera edit. See `02 - WR Automate.md`. | Enter |
@@ -46,9 +48,10 @@ Everything changes live: you see it in the preview right away.
 
 - **Saved back to `WR_Editor_Fix.ini`** (about a second after your last change,
   each into its own line, so the next launch starts with it): Camera Speed,
-  Header Style, Header Motion, Font, Colors, and the WR Automate page values.
+  Header Style, Header Motion, Font, Colors, Timeline Size, and the WR
+  Automate page values.
   Nothing else in the `.ini` is touched.
-- **Kept until you restart FiveM** (not saved): time + weather. Press Default
+- **Saved with your project** (`WR Editor Fix\Projects\<project name>.json`): time + weather. Press Default
   to go back to the recorded look.
 
 ## WR Marker Options
@@ -65,4 +68,5 @@ Options** (Enter). It holds the settings that belong to one marker:
 - WR Options only appears while a clip is open for editing (not in the
   project list or the clip gallery).
 - If the WR rows are missing, check `MenuRows = 1` in `[Editor Time Weather]`
-  and that you are on game build b3258 (the log names your build).
+  and that you are on game build b3258, b3095 or b3407 (the log names your
+  build).

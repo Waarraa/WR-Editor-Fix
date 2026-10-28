@@ -1,0 +1,16 @@
+MADE BY WR | WARRAA_
+WR Editor Fix - Music (WR Automate Beat Sync)
+
+Put your songs in this folder: mp3, wav, m4a, flac or wma.
+
+In the editor: marker menu -> WR Options -> WR Automate -> Music -> pick a song.
+WR Automate then puts its markers on the beat of that song, the video is as long
+as the song section you pick, and the song plays in the editor when you press Play.
+New songs show up right away (Music page -> Song -> Enter reads the folder again).
+
+Music\Edits\ is made by WR Automate: after every Beat Sync run it writes an edit
+sheet (.txt + .json) with the song section and every marker's song time - use it to
+put the song in the right place in your video editor. The export itself has no song
+in it.
+
+Guide: Guides\02 - WR Automate.md

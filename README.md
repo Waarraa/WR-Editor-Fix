@@ -1,6 +1,7 @@
+<!-- MADE BY WR | WARRAA_ -->
 # WR Editor Fix
 
-**Version: v0.9.0**
+**Version: v1.0.0**
 
 Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.com/@Warraa__
 
@@ -8,18 +9,22 @@ Discord: https://discord.com/invite/FKJ27bhqfJ  |  YouTube: https://www.youtube.
 
 A FiveM `.asi` plugin that fixes the Rockstar Editor crashing when a clip
 references a custom asset (vehicle / MLO / prop / ytyp) that got unloaded,
-plus editor tools: a free camera without limits, time + weather per clip and
-per marker, WR loading screens, recording real GTA V cutscenes, fixes for
-clips with a player whose body never loaded, a list of broken server files you
-can send to your server owner, and NVE (NaturalVision Evolved) + EVE
-(ExtendedVideoExport) support.
+plus editor tools: WR Export (the editor's export written by WR - 4K, AV1,
+real motion blur, your ReShade look), WR Automate (the editor builds the
+camera edit for you, on the beat of your song), WR Garage, WR blend + WR shake,
+Director Mode, a free camera without limits, time + weather per clip and per
+marker, the WR Neon editor look, WR loading screens, recording real GTA V
+cutscenes, a list of broken server files you can send to your server owner,
+and NVE (NaturalVision Evolved) + EVE (ExtendedVideoExport) support.
 
-**New in v0.9.0:** WR Automate builds the camera edit for you, WR Garage tunes
-the car (for the whole clip or per marker), WR blend and WR shake give marker
-cameras smooth on-time paths and real handheld shake (saved with your
-project), time + weather per marker, the WR Neon editor theme with 10 fonts
-and live colours, and Director Mode - fly the camera live and the take becomes
-markers (first version).
+**New in v1.0.0:** **WR Export** - the editor's Export written by WR, on by
+default: HEVC / H.264 / AV1 on your graphics card, CQP like OBS, any size up to
+4K, real motion blur, your ReShade look, presets right in the Export screen.
+**Three game builds** - every WR tool now runs on b3258, b3095 and b3407.
+**Beat Sync** - WR Automate cuts on the beat of your own song. Plus WR
+Automate Hard Cut / Distance / Height / Checks rows, **Timeline Size**, WR
+Garage looks + time + weather **saved with your project**, a Clean that
+stays clean, new loading screen cards and new crash fixes.
 
 ## ⚠️ Important — read before you install
 
@@ -38,13 +43,15 @@ crash, from real logs and dumps, rather than one blanket "fix everything"
 switch. If your server hasn't had its crash looked at yet, it may still
 crash exactly as before.
 
-**Tested on game build b3258.** Everything in this plugin was built and
-tested on FiveM's game build **b3258** (Legacy). The plugin knows and loads on every
-game build FiveM supports (table below) and the log names yours, but only b3258 is
-tested. On the others, **you are the tester**: it may work, some fixes may
-not apply (the game's code sits at different places), and parts built for
-b3258 switch themselves off. If you're on another build, your logs and crash
-dumps are what gets it working there — see **"Found a new crash?"** below.
+**Tested on game builds b3258, b3095 and b3407.** Everything in this plugin
+was built and tested on FiveM's game builds **b3258**, **b3095** and **b3407**
+(Legacy) - every WR tool and the build-specific crash fixes run on all three.
+The plugin knows and loads on every game build FiveM supports (table below)
+and the log names yours, but on the others **you are the tester**: it may
+work, some fixes may not apply (the game's code sits at different places),
+and the editor tools switch themselves off. If you're on another build, your
+logs and crash dumps are what gets it working there — see **"Found a new
+crash?"** below.
 
 Your game build is the number in the crash window (`GTA5_b3258.exe`) or the
 `Game build:` line near the top of `WR_Editor_Fix.log`.
@@ -64,10 +71,10 @@ add-on cars, the stock export, controllers ...) and what isn't yet:
 | b2699 | The Criminal Enterprises | community testing |
 | b2802 | Los Santos Drug Wars | community testing |
 | b2944 | San Andreas Mercenaries | community testing |
-| b3095 | The Chop Shop | partly checked (one editor session) |
+| **b3095** | **The Chop Shop** | **tested** |
 | **b3258** | **Bottom Dollar Bounties** | **tested** |
 | b3323 | title update after Bottom Dollar Bounties | community testing |
-| b3407 | Agents of Sabotage | community testing |
+| **b3407** | **Agents of Sabotage** | **tested** |
 | b3570 | Money Fronts | community testing |
 | b3751 | A Safehouse in the Hills | community testing |
 | b3788 | 2026 patch 1 | community testing |
@@ -101,18 +108,19 @@ limits - are in the `Guides` folder (in the release zip, and here on GitHub):
 |---|---|
 | [00 - Support and Testing](Guides/00%20-%20Support%20and%20Testing.md) | what's supported and what's tested, feature by feature - and what isn't yet |
 | [01 - WR Options](Guides/01%20-%20WR%20Options.md) | the editor's own WR page - every row, what saves where |
-| [02 - WR Automate](Guides/02%20-%20WR%20Automate.md) | the editor builds the camera edit for you, obstacle checks, Clear Timeline |
+| [02 - WR Automate](Guides/02%20-%20WR%20Automate.md) | the editor builds the camera edit for you, Beat Sync on your song, Hard Cut, obstacle checks, Clear Timeline |
 | [03 - WR Garage](Guides/03%20-%20WR%20Garage.md) | paint, livery, lights, plate, body parts, wheels, randomise |
 | [04 - Car Look per marker](Guides/04%20-%20Car%20Look%20per%20marker.md) | a new car look from a marker on, cut on the beat |
 | [05 - WR Blend and WR Shake](Guides/05%20-%20WR%20Blend%20and%20WR%20Shake.md) | on-time camera paths and real camera shake, saved with the project |
 | [06 - Time and Weather](Guides/06%20-%20Time%20and%20Weather.md) | per clip and per marker, cut or smooth time-lapse |
 | [07 - Director Mode](Guides/07%20-%20Director%20Mode.md) | fly the camera live, the take becomes markers - all controls |
-| [08 - Editor Look](Guides/08%20-%20Editor%20Look.md) | Neon theme, 10 fonts, every colour, header art |
+| [08 - Editor Look](Guides/08%20-%20Editor%20Look.md) | Neon theme, 10 fonts, every colour, header art, Timeline Size |
 | [09 - Free Camera](Guides/09%20-%20Free%20Camera.md) | no leash, no collision, any zoom and speed, cutscene clips, no seek freeze |
-| [10 - Loading Screens](Guides/10%20-%20Loading%20Screens.md) | the WR launch and clip screens, Windows 10 note |
+| [10 - Loading Screens](Guides/10%20-%20Loading%20Screens.md) | the WR launch and clip screens, game build + plugins cards, Windows 10 note |
 | [11 - Crash Fixes and Reports](Guides/11%20-%20Crash%20Fixes%20and%20Reports.md) | what the fixes do, the reports, what to send when it crashes |
+| [12 - WR Export](Guides/12%20-%20WR%20Export.md) | the editor's export written by WR: every Export screen row, presets, quality, motion blur, ReShade |
 
-## Features (v0.9.0)
+## Features (v1.0.0)
 
 **Crash fix — on by default:**
 - Fixes the crash after an export or when leaving the
@@ -121,7 +129,7 @@ limits - are in the `Guides` folder (in the release zip, and here on GitHub):
   The plugin keeps that entity out and treats its leftover data as empty.
 - Fixes the crash when an export loads a clip with an item
   that has no name (`arizona-beryllium-river`, `[Crash Fix]
-  EmptyNameLookupFix`, game build b3258).
+  EmptyNameLookupFix`, game builds b3258, b3095 + b3407).
 - The safety net no longer stops a working export
   (`berlin-golf-wyoming`): it now measures recoveries per second instead of
   counting until a pause.
@@ -143,13 +151,13 @@ limits - are in the `Guides` folder (in the release zip, and here on GitHub):
   the first (`music-arkansas-vermont`): the editor looped over a table that
   was already gone. The plugin now finishes that loop as "nothing found".
 - Fixes `RAGE error: ERR_GEN_MAP` when an export starts
-  on a heavy server (`[Crash Fix] GrowStreamingList`, game build b3258): the
+  on a heavy server (`[Crash Fix] GrowStreamingList`, game builds b3258, b3095 + b3407): the
   game's list of things waiting to load ran full during the export's reload,
   and the plugin now adds room to it too. Built from a real crash; it hasn't
   come back since, but it hasn't been forced to happen again either.
 - Fixes the `RAGE error: ERR_STR_INFO_2` and
-  `ERR_STR_INFO_3` game errors (`[Crash Fix] GrowStreamingList`, game build
-  b3258). The game keeps a fixed list of 32768 streaming entries. On heavy
+  `ERR_STR_INFO_3` game errors (`[Crash Fix] GrowStreamingList`, game builds
+  b3258, b3095 + b3407). The game keeps a fixed list of 32768 streaming entries. On heavy
   servers the world alone uses about 28000 of them, so a teleport, a cutscene
   loading or an editor export fills the rest and the game stops. When the
   list runs full, the plugin adds more room to it instead. Works in game and
@@ -177,8 +185,16 @@ limits - are in the `Guides` folder (in the release zip, and here on GitHub):
 - When the game raises its own fatal error
   (`RAGE error: ERR_...`), FiveM now reports it cleanly instead of the plugin
   turning it into a second, confusing crash.
-- The log says which game build you're on, and parts built for b3258
-  switch themselves off on other builds. The plugin loads
+- **New in v1.0.0:** fixes the crash about a second after a clip loads
+  (`yankee-alpha-may`): the game's clean-up looked objects up in a list that
+  was never set up and walked it forever. The plugin now answers "not found"
+  there.
+- **New in v1.0.0:** no more freeze ("FiveM has stopped responding") when a
+  car part's list loops back on itself while editing - the loop is cut before
+  the game walks it.
+- The build-specific crash fixes run on b3258, b3095 and b3407.
+- The log says which game build you're on, and the editor tools switch
+  themselves off on builds other than b3258, b3095 and b3407. The plugin loads
   on every game build FiveM supports (it used to refuse to load on some), and
   the log names the GTA V update and how far that build is tested.
 
@@ -219,7 +235,7 @@ limits - are in the `Guides` folder (in the release zip, and here on GitHub):
   off. See "Broken files on the server" below for what to do with it.
 
 **Time + weather in the editor, on by default —
-`[Editor Time Weather]` (game build b3258):**
+`[Editor Time Weather]` (game builds b3258, b3095 + b3407):**
 - Marker menu -> **WR Options** (Enter) -> Hour / Minute / Weather / Default.
   Pick any minute of the day and any GTA weather (Extra Sunny, Clear, Clouds,
   Smog, Foggy, Overcast, Rain, Thunder, Clearing, Neutral, Snow, Blizzard,
@@ -227,20 +243,20 @@ limits - are in the `Guides` folder (in the release zip, and here on GitHub):
   follows, and the export renders exactly what you see.
 - The rows show the clip's own recorded time and weather until you change
   them. **Default** (Enter) puts everything back to what was recorded.
-- Your pick stays for every clip until you press Default or restart FiveM -
-  it isn't saved with the project yet. Nothing is written into your clips.
+- **New in v1.0.0: saved with your project** (WR Options and per marker) -
+  open the project again and the look is back. Nothing is written into your
+  clips.
 - `TimeWeatherOverride` / `Time` / `Weather` in the `.ini` set it without the
   menu (live, applies within a second of saving). `MenuRows = 0` hides the
   menu row.
-- **New in v0.9.0: per marker.** Cameras -> **WR Marker Options** -> Time &
+- **Per marker:** Cameras -> **WR Marker Options** -> Time &
   Weather On, Hour, Minute, Weather, Change. From that marker on the clip plays
   with its own time and weather until the next marker that has one. Change =
   Cut switches right at the marker; Smooth changes gradually toward it (a
-  time-lapse). It wins over the WR Options pick and works in the export. Not
-  saved with the project.
+  time-lapse). It wins over the WR Options pick and works in the export.
 
 **No seek freeze, on by default — `[Editor Playback] NoSeekStall` (game
-build b3258):**
+builds b3258, b3095 + b3407):**
 - After every seek, cut or marker move the editor waited until the whole game
   had finished streaming. On a busy server that never happens, so it froze
   for about 7 seconds every time. Now it waits at most `NoSeekStallWaitMs`
@@ -258,17 +274,18 @@ build b3258):**
   map, the car or ped it's attached to or looking at, and objects between two
   markers (no "Unable to apply camera blend due to object collision" jump).
 - Scale the free-cam's move speed (adjustable multiplier, updates live
-  while flying — no relaunch needed). **New in v0.9.0:** also in the editor,
+  while flying — no relaunch needed). Also in the editor,
   marker menu -> WR Options -> Camera Speed (x0.25 to x20), saved back to the
   `.ini`.
 
-**New in v0.9.0: WR Options — the editor's own WR page (game build b3258):**
+**WR Options — the editor's own WR page (game builds b3258, b3095 + b3407):**
 the last row of the marker menu. Hour / Minute / Weather / Default, Camera
-Speed, Header Style, Header Motion, Font, Colors, **WR Garage**, **Director
-Mode**, **WR Automate** and **Clear Timeline** - everything below lives there.
+Speed, Header Style, Header Motion, Font, Colors, **Timeline Size** (new in
+v1.0.0), **WR Garage**, **Director Mode**, **WR Automate** and **Clear
+Timeline** - everything below lives there.
 
-**New in v0.9.0: WR Automate — the editor builds the camera edit for you —
-`[WR Automate]` (game build b3258):**
+**WR Automate — the editor builds the camera edit for you —
+`[WR Automate]` (game builds b3258, b3095 + b3407):**
 - WR Options -> **WR Automate**: Follow (the car the recorded player drives,
   or the player), Length (the whole clip or 5 - 60 s), Markers (3 - 30),
   Style (Mixed / Orbit / Chase), Shake (Auto / Off / one preset), then
@@ -282,11 +299,25 @@ Mode**, **WR Automate** and **Clear Timeline** - everything below lives there.
   Close to the ground is fine, under it isn't. `AvoidObstacles = 0` skips it.
 - The help line shows the progress, Back stops it, and everything stays
   editable afterwards. Works best right after recording, on a fresh clip.
+- **New in v1.0.0: Beat Sync.** Drop songs (mp3 / wav / m4a / flac / wma) into
+  `WR Editor Fix\Music\`, pick one in the **Music** row, choose the section
+  and Cut every (beat / 2 beats / bar / 2 bars / 4 bars): the markers land on
+  the beat, the video is as long as the section, and the song plays in the
+  editor in sync. Each run writes an edit sheet (song, BPM, drop, section,
+  every marker's song time) to line the song up in your video editor. The
+  export itself has no song in it, on purpose.
+- **New in v1.0.0: more rows.** **Blend / Cut**: WR Blend, or Hard Cut - every
+  marker cuts to its own camera (Follow Car, New Angle, Pan With Car).
+  **Distance** (Mixed or 2 - 30 m), **Height** (Mixed, Low, 1 - 20 m - drone
+  shots), **Checks** (On / Ground only / Off), **Length = Timeline** (fills
+  exactly your own start + end markers). Drifts and donuts get a calm camera
+  that follows the middle of the move, and no camera move goes through the
+  followed car any more.
 - **Clear Timeline** (WR Options, Enter twice) puts a clip back to a fresh
   one: every marker gone, the default start and end markers, every setting
   default. No undo.
 
-**New in v0.9.0: WR Garage — tune the car inside the editor (game build b3258):**
+**WR Garage — tune the car inside the editor (game builds b3258, b3095 + b3407):**
 - WR Options -> **WR Garage** tunes the car the recorded player drives, live:
   Livery (Off or any livery the car has, by its name), Primary / Secondary
   paint (22 colours), Finish (Normal / Metallic / Pearl / Matte / Metal /
@@ -300,12 +331,15 @@ Mode**, **WR Automate** and **Clear Timeline** - everything below lives there.
   same page for that marker. From that marker on, the car wears its look until
   the next marker that has one - a new paint, livery or body kit on a cut.
   Before the first one, the clip's look shows.
-- Works in the export too. Not saved with the project yet: the looks stay
-  until you restart FiveM.
+- Works in the export too. **New in v1.0.0: saved with your project** (the
+  clip's look and every marker's Car Look) and on the car as soon as the
+  project opens.
+- **New in v1.0.0: Clean stays clean** - no dirt, dents, scratches or wall
+  scrapes, through every change, marker look and the export.
 - Add-on cars can map their paint slots their own way (for example the
   second colour on the headlight glass); vanilla cars do what the rows say.
 
-**New in v0.9.0: WR blend + WR shake for marker cameras (game build b3258):**
+**WR blend + WR shake for marker cameras (game builds b3258, b3095 + b3407):**
 - **WR blend** (Cameras -> Blend -> **WR**, after Smooth): the stock Smooth
   lets a spring chase the camera, so it always lags behind what you film. WR
   blend passes every marker exactly on time with the speed flowing through
@@ -321,8 +355,8 @@ Mode**, **WR Automate** and **Clear Timeline** - everything below lives there.
   comes back when the project opens. Trimming, moving or deleting other clips
   doesn't move them.
 
-**New in v0.9.0, first version: Director Mode — fly the camera live, the take
-becomes markers (game build b3258):**
+**First version: Director Mode — fly the camera live, the take
+becomes markers (game builds b3258, b3095 + b3407):**
 - WR Options -> **Director Mode**: Look Assist (keeps the car or player
   centred), Follow (the camera rides along with the car), Record Speed (100 /
   50 / 35 / 20 % - fly in slow motion, it plays back at normal speed), Detail,
@@ -336,7 +370,7 @@ becomes markers (game build b3258):**
   stops), but a controller is much smoother.
 - First version: no obstacle checks on a take yet, no re-recording one part.
 
-**New in v0.9.0: the editor's look — `[Editor Look]` (game build b3258):**
+**The editor's look — `[Editor Look]` (game builds b3258, b3095 + b3407):**
 - **Theme = Neon** (on in the shipped `.ini`): the WR Neon Glass look on the
   clip edit screen - a frosted glass menu with a neon pill on the selected
   row, one glass panel for the time and the playback buttons, a slim timeline
@@ -353,12 +387,15 @@ becomes markers (game build b3258):**
   back.
 - **Header:** the logo at the top of the editor menu - Stock, WR, Meme (on in
   the shipped `.ini`), Retro or Cinematic, animated or still.
-- Font, Colors, Header Style, Header Motion and Camera Speed change live in WR
-  Options, and the pick is saved back into the `.ini`.
+- **New in v1.0.0: Timeline Size** (50 - 300 %): the markers, clip start /
+  end, playhead and the bar's thickness, live. The icons stay on the line and
+  every marker keeps its time. Neon also lost the white line in the playhead.
+- Font, Colors, Header Style, Header Motion, Timeline Size and Camera Speed
+  change live in WR Options, and the pick is saved back into the `.ini`.
 - **Replaces `[Editor Theme]`** from v0.8.0 and older (`EditorTheme`,
   `EditorFont` and the GTA font list are gone). Take the new `.ini`.
 
-**Record GTA V cutscenes (game build b3258), on by default:**
+**Record GTA V cutscenes (game builds b3258, b3095 + b3407), on by default:**
 - **`[Recording] AllowCutsceneRecording`:** the Rockstar Editor keeps
   recording while a real GTA V cutscene plays or loads (for example one a
   server script starts). Normally the game stops the recording the moment you
@@ -373,6 +410,32 @@ becomes markers (game build b3258):**
   the cutscene (a server's own cutscene camera tool).
 - On other game builds both switch themselves off, and the log says so.
 
+**New in v1.0.0: WR Export — the editor's export, written by WR — `[WR
+Export]`, on by default (game builds b3258, b3095 + b3407):**
+- The editor's Export button, frames and timing stay the game's own; WR
+  writes the video file. Settings in `WR_Export_Settings.ini` (read at every
+  export, every option explained inside) and in the editor's **Export
+  screen** - the WR EXPORT rows save straight into it.
+- **HEVC, H.264 or AV1** on your graphics card's encoder (NVIDIA / AMD / Intel
+  - the card the game runs on), or H.264 on the CPU.
+- **CQP 1-51 like OBS** (graphics card encoders) or a bitrate. **Any size**:
+  Screen, 1080p, 1440p, 4K - the stock 1920x1080 cap is gone. **Any frame
+  rate**: 24 / 25 / 30 / 50 / 60 / 120 / 23.976 / 29.97 / 59.94.
+- **Real camera motion blur**: 4 - 64 game frames blended per video frame,
+  Blur Shutter (streak length) and Blur Shape (Soft / Even).
+- **Your ReShade look in the video**, every blur sample included. Only ReShade
+  **with full add-on support** is supported - the standard download isn't.
+  Don't have it? Download it from https://reshade.me.
+- **Presets** in the Export screen (Fast / Medium / Slow / Super Slow) and
+  your own with **Save Preset** (`Export Presets\<name>.json` - copy and rename
+  one to make another).
+- Videos are `WR_` + the name you type at Export, in `Videos\WR Exports` (or
+  your own folder), never overwritten. Sound off = no audio track.
+- **EVE installed with its enable_mod on = EVE exports instead. Pick one** -
+  both at the same time can crash (the loading screen tells you).
+  `[WR Export] Enabled = 0` gives the editor's own stock export.
+- Full guide: [12 - WR Export](Guides/12%20-%20WR%20Export.md).
+
 **WR loading screens, on in the shipped `.ini` —
 `[Editor Loading Screen]`:**
 - **Editor launch screen (`LaunchScreen`):** press "Rockstar Editor" + Yes in
@@ -385,6 +448,11 @@ becomes markers (game build b3258):**
 - **Clip screen (`ClipScreen`):** a minimal WR screen while a clip loads
   (Edit) or an export starts, instead of the stock "Preparing clip" screen.
   It closes the moment the editor is ready.
+- **New in v1.0.0:** a **Game build** card (your build, its GTA V update and
+  whether the editor tools are on), a **Plugins** card (EVE / NVE / QuantV /
+  ReShade = Supported, any other `.asi` = Not tested), a big red warning when
+  Rockstar Editor+ is installed, and a blue INFO box when EVE and WR Export
+  are both on.
 - `UpdateCheck = 0` stops the GitHub request (the built-in update log is
   shown instead).
 - Both need the **Microsoft Edge WebView2 Runtime**: built into Windows 11, and
@@ -402,10 +470,16 @@ becomes markers (game build b3258):**
 - **The WR loading screens are only tested on Windows 11** (see above).
   Pressing Export a second time in the same session can show the clip
   screen a few seconds late.
-- **Only tested on game build b3258.** Every other build in the table above
-  is tested by the people who play on it. A crash already fixed on b3258 can
-  still happen on another build, because the fix has to be matched to each
-  build's code separately.
+- **Tested on game builds b3258, b3095 and b3407 only.** Every other build in
+  the table above is tested by the people who play on it. A crash already
+  fixed on these builds can still happen on another one, because the fix has
+  to be matched to each build's code separately.
+- **WR Export with motion blur: the sound comes out too long** (the game makes
+  sound for every frame it renders). The blur presets have Sound off - add your
+  music in your video editor. A one-export fix is planned (EVE has the same
+  problem).
+- **WR Export is tested on NVIDIA** (HEVC, H.264, AV1) and the CPU encoder; AMD
+  and Intel encoders use the same Windows path but haven't been tested yet.
 - **On very heavy servers, editing a clip and then exporting in the same
   session can still crash on export** (`alabama-twenty-hawaii`,
   `GTA5_b3258.exe+600FB30`). Leaving the edit screen makes the game reload
@@ -432,15 +506,12 @@ becomes markers (game build b3258):**
 - **Director Mode is a first version.** It doesn't check for obstacles on a
   take yet, and you can't re-record just one part. Works best with a
   controller.
-- **Not saved with the project yet:** WR Garage looks (clip and per marker)
-  and time + weather (WR Options and per marker). They stay until you restart
-  FiveM. WR blend and WR shake are saved.
 - **A crash while editing some clips with add-on cars**
   (`ERR_MEM_EMBEDDEDALLOC_GUARD_1`, or a crash at `+176B0BB`): a car keeps a
   removed part in its parts list. A guard for it is in, but it came back once
   more on the same clip. Being worked on - send the crash dump and logs on
   Discord if you hit it.
-- **The `.asi` is about 7.8 MB now** (the editor art and fonts are built in).
+- **The `.asi` is about 8 MB** (the editor art and fonts are built in).
 
 ## Rockstar Editor+ (RE+) — not supported, and it won't be
 
@@ -458,15 +529,16 @@ b3258 and decided against it:
   everything.
 - **RE+ on its own still crashed on export** on my server
   (`ERR_STR_INFO_2`), a Rockstar Editor crash WR Editor Fix already catches.
-- **Its renderer was far too slow for my renders** (about 10% in 5 minutes),
-  so I stay with EVE for exporting.
+- **Its renderer was far too slow for my renders** (about 10% in 5 minutes) -
+  that's why WR Export exists now.
 
 Instead, the editor features people use RE+ for are built into WR Editor Fix
 itself, from my own research and my own code: no freeze after seeking,
 time + weather that stays in the export (per clip and per marker), no camera
 collision, unlimited camera distance, uncapped zoom, free camera on blocked
-clips, free-cam speed, and since v0.9.0 WR blend (smooth marker blending that
-stays on time) and WR shake presets, saved with your project.
+clips, free-cam speed, WR blend (smooth marker blending that stays on time)
+and WR shake presets saved with your project, and since v1.0.0 WR Export -
+the editor's export with real motion blur and your ReShade look.
 
 **Using RE+ anyway?** It isn't supported together with WR Editor Fix. If RE+
 has its own camera distance, zoom or fast-precache options switched on, WR
@@ -478,21 +550,21 @@ plugin that's built and tested for FiveM.
 ## What might come in future updates
 
 No promises on timing — solo project, worked on as time allows:
-- Save WR Garage looks and time + weather with the project.
+- WR Export: the game's sound in motion blur exports, in the same export.
 - Director Mode: obstacle checks, re-record one part, its own `.ini` section.
 - WR Garage for the other cars (and peds) in a clip, not only the player's.
 - A fix for the vehicle-data crash mentioned above, if a safe one is found.
 - Camera roll/tilt control unlock.
-- Export resolution/framerate unlock.
 - Auto-save while editing, so a crash never loses your work.
 
-Check back on this repo for updates — new versions will be numbered v0.10.0,
-v0.11.0, and so on as they ship. Full version history: `CHANGELOG.md`.
+Check back on this repo for updates — new versions will be numbered v1.1.0,
+v1.2.0, and so on as they ship. Full version history: `CHANGELOG.md`.
 
 ## Install
 
-1. Download `WR_Editor_Fix.asi` and the `WR Editor Fix` folder (with its
-   `.ini` inside) from this release.
+1. Download `WR_Editor_Fix.asi` and the `WR Editor Fix` folder from this
+   release (inside: `WR_Editor_Fix.ini`, `WR_Export_Settings.ini`, the
+   `Export Presets` folder and the `Music` folder for Beat Sync songs).
 2. Copy **both** into your FiveM `plugins` folder:
    `%LOCALAPPDATA%\FiveM\FiveM.app\plugins\`
 3. Relaunch FiveM.
@@ -501,10 +573,14 @@ That's it — the crash fix and the main features are already on in the
 shipped `.ini`. Open `WR_Editor_Fix.ini` if you want to turn anything on, off
 or adjust it.
 
-**Already on v0.8.0 or older?** Replace the `.asi` **and** take the new
-`.ini`: `[Editor Look]` replaces `[Editor Theme]`, and `[WR Automate]` is new.
-If you had your own menu colours, copy them into `[Editor Look]` `MenuText` /
-`MenuTextGreyed`.
+**Already on v0.9.0 or older?** Replace the `.asi` **and** take the whole new
+`WR Editor Fix` folder: `WR_Editor_Fix.ini` has the new `[WR Export]` section
+(WR Export is on by default), new `[WR Automate]` keys (Distance, Height,
+Blend, the Beat Sync keys) and `TimelineSize`, and `WR_Export_Settings.ini`,
+`Export Presets` and `Music` are new. Using EVE for your exports? Keep it and set
+`[WR Export] Enabled = 0` - or remove EVE and use WR Export. Coming from
+v0.8.0 or older: `[Editor Look]` replaces `[Editor Theme]` - copy your own menu
+colours into `MenuText` / `MenuTextGreyed`.
 
 **Verifying your download:** the SHA256 checksum for `WR_Editor_Fix.asi` is
 in `WR_Editor_Fix.asi.sha256`. If you're ever unsure a copy is genuine
@@ -523,13 +599,16 @@ separate file that isn't part of the release — you don't need it.) The
 `[Editor Camera]` section and the `[Editor Time Weather]` time / weather keys
 reload live while FiveM is running — edit, save, and it applies within a
 second, no relaunch needed. `[Editor Look]` is read every time the editor
-opens, and WR Options changes its Font, Colors and Header live. The plugin
-only writes back what you change in the editor itself (WR Options: Font,
-Colors, Header Style / Motion, Camera Speed and the WR Automate page), each
-into its own line. Everything else (including `FreeCameraOnBlockedClips`,
-`[Recording]`, the `[Crash Fix]` switches such as `GrowStreamingList` and
-`EveSwapChainFix`, `[Editor Playback]`, `MenuRows`, `[WR Automate] Enabled`
-and `[Editor Loading Screen]`) needs a relaunch to take effect.
+opens, and WR Options changes its Font, Colors, Header and Timeline Size
+live. `WR_Export_Settings.ini` is read again at every export. The plugin only
+writes back what you change in the editor itself (WR Options: Font, Colors,
+Header Style / Motion, Timeline Size, Camera Speed and the WR Automate page,
+each into its own line of `WR_Editor_Fix.ini`; the Export screen's WR EXPORT
+rows and Save Preset into `WR_Export_Settings.ini` / `Export Presets`).
+Everything else (including `FreeCameraOnBlockedClips`, `[Recording]`, the
+`[Crash Fix]` switches such as `GrowStreamingList` and `EveSwapChainFix`,
+`[Editor Playback]`, `MenuRows`, `[WR Automate] Enabled`, `[WR Export]
+Enabled` and `[Editor Loading Screen]`) needs a relaunch to take effect.
 
 ## ⚠️ Windows Defender says "Trojan" / "malware"? (known issue, I'm working on it)
 
@@ -618,4 +697,4 @@ published.
 
 Third-party components used are credited in `THIRD-PARTY-NOTICES.txt`. The
 editor fonts built into the plugin are free Google Fonts; their licences are in
-the release's `Fonts` folder.
+`THIRD-PARTY-NOTICES.txt` too.

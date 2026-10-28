@@ -1,3 +1,4 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Director Mode - fly the camera live, the take becomes markers
 
 Play the clip and fly the camera yourself, like a camera operator. When the
@@ -5,7 +6,7 @@ take ends, Director Mode turns your move into editor markers - the fewest that
 still reproduce it - so it plays back exactly like you flew it, and you can
 still edit every marker afterwards.
 
-**Game build:** b3258 only. **First version** - see Limits.
+**Game builds:** b3258, b3095 and b3407 (not tested on b3407 yet). **First version** - see Limits.
 **Works best with a controller.** Mouse + keyboard works but is harder to fly
 smoothly.
 
@@ -77,4 +78,4 @@ passes each point exactly on time.
   fly it there (WR Automate has checks, Director Mode doesn't yet).
 - No re-recording just one part of a take, and no undo.
 - No settings in the `.ini` yet.
-- Game build b3258 only.
+- Game builds b3258, b3095 and b3407.

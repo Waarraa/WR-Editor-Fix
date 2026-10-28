@@ -1,14 +1,15 @@
+<!-- MADE BY WR | WARRAA_ -->
 # WR Garage - tune the car inside the editor
 
 Change the paint, livery, lights, plate and body parts of the clip's car
 right in the editor, live. The export renders the car exactly as you see it.
 
-**Game build:** b3258 only. **Ini:** none - it's in the editor menu.
+**Game builds:** b3258, b3095 and b3407. **Ini:** none - it's in the editor menu.
 For a different look from one marker on, see `04 - Car Look per marker.md`.
 
-> **Tested:** A vanilla car: every row, Body Parts, wheels, randomise, Reset, plate text + style; one add-on car (its paint slots are mapped its own way). Export: EVE.
+> **Tested:** A vanilla car: every row, Body Parts, wheels, randomise, Reset, plate text + style; add-on drift cars (their paint slots are mapped their own way); Clean, also in the export; the look saved with the project. Exports: EVE and WR Export.
 >
-> **Not tested yet:** Clean, motorbikes / boats / aircraft, many add-on cars.
+> **Not tested yet:** Motorbikes / boats / aircraft, many add-on cars.
 >
 > Everything that's supported / tested: `00 - Support and Testing.md`.
 
@@ -41,7 +42,7 @@ it). Left / right steps through the values and the car changes at once.
 | **Body Parts** | Enter | Opens the Body Parts page (below). |
 | **Randomise Colors** | Enter | Random paint, second colour, finish, xenon, and sometimes neon. Press again for a new roll. |
 | **Randomise All** | Enter | Everything random - colours, every body part, wheels and livery. |
-| **Clean** | Enter | No dirt, damage repaired, decals washed off. |
+| **Clean** | Enter | No dirt, dents + scratches fixed, every decal (wall scrapes too) off - and it stays that way (see "Clean" below). Broken-off parts go back on with the press. |
 | **Reset** | Enter | The car back exactly as it was recorded. |
 
 The 22 colours: Black, Graphite, Grey, Silver, White, WR Red, Red, Candy Red,
@@ -66,6 +67,17 @@ can name their own slots ("Canards", "Wing" ...) and the page uses those names.
 
 **Back** returns to WR Garage.
 
+## Clean
+
+Press **Clean** once and the car stays clean: no dirt, no dents or scratches,
+no decals (black wall scrapes, bullet holes). It stays on through everything -
+your other Garage changes, marker looks, the export, and the project opened
+again later (it's saved with the look). If the replay puts scrapes or damage
+back while the clip plays, they are taken off again right away.
+
+Parts that broke off in the recording (a bumper on the road) go back on only
+when you press Clean. Reset turns Clean off.
+
 ## In the export
 
 The look is applied to the car the replay makes, so it is in your export too.
@@ -85,7 +97,7 @@ puts its own paint or plate back, the look goes back on the same frame.
 
 ## Limits
 
-- Not saved with the project yet: the look stays until you restart FiveM.
+- Saved with your project (`WR Editor Fix\Projects\<project name>.json`): open the project again and the look is back.
 - Only the player's car (or the focused car) - other cars in the clip later.
-- Clean repairs the car when you press it; damage the replay recorded later in
-  the clip can come back.
+- Broken-off parts go back on only when you press Clean (dents, scratches,
+  scrapes and dirt stay off by themselves).

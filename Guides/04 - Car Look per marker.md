@@ -1,10 +1,11 @@
+<!-- MADE BY WR | WARRAA_ -->
 # Car Look per marker - the car changes on a cut
 
 Give a marker its own car look: from that marker on, the car wears it - a new
 paint, livery, plate or body kit - until the next marker that has its own.
 Great for beat-synced edits where the car changes on every cut.
 
-**Game build:** b3258 only. Uses WR Garage's rows - see `03 - WR Garage.md`.
+**Game builds:** b3258, b3095 and b3407. Uses WR Garage's rows - see `03 - WR Garage.md`.
 
 > **Tested:** 5 marker looks in preview playback and in an EVE export - the car switched at every marker.
 >
@@ -55,6 +56,6 @@ recorded" (the marker look stays On).
 
 ## Limits
 
-- Not saved with the project yet: the looks stay until you restart FiveM.
+- Saved with your project, like WR blend and WR shake: reopen it and every marker's look is back.
 - The switch is a cut, not a fade.
 - The player's car only.
