@@ -1,0 +1,16 @@
+{
+  "_madeBy": "MADE BY WR | WARRAA_",
+  "name": "Medium",
+  "order": 2,
+  "description": "8-sample motion blur, film shutter (180 degrees) - about 9x the export time (a quick sound pass + the blur). Sound on, in sync.",
+  "Resolution": "Screen",
+  "Codec": "HEVC",
+  "Encoder": "Auto",
+  "BitrateMbps": "Auto",
+  "CQP": "18",
+  "MotionBlurSamples": "8",
+  "MotionBlurStrength": "0.5",
+  "MotionBlurShape": "Soft",
+  "ReShade": "1",
+  "Sound": "1"
+}
